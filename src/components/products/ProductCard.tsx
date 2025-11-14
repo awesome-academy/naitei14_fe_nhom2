@@ -89,6 +89,10 @@ export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
           })}
         </div>
 
+        {product.description && (
+          <p className="text-xs text-gray-600 mb-3 line-clamp-2 px-2">{product.description}</p>
+        )}
+
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <span className="text-lg font-bold text-green-primary">
             {product.price.toLocaleString(LOCALE)} ₫
@@ -98,6 +102,53 @@ export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
               {product.oldPrice.toLocaleString(LOCALE)} ₫
             </span>
           )}
+        </div>
+        
+        <div className="flex items-center justify-center gap-2">
+          <button
+            className="bg-green-primary text-white px-4 py-2 rounded-md hover:bg-green-dark transition-colors font-semibold text-sm flex-1"
+            aria-label="Mua ngay sản phẩm"
+          >
+            MUA NGAY
+          </button>
+          <button
+            className={CLASS_ICON_BUTTON}
+            aria-label="Xem nhanh sản phẩm"
+          >
+            <svg
+              className={CLASS_SVG_ICON_GRAY}
+              fill="none"
+              stroke={CLASS_SVG_FILL}
+              viewBox={CLASS_SVG_VIEWBOX}
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={SEARCH_ICON_PATH}
+              />
+            </svg>
+          </button>
+          <button
+            className={CLASS_ICON_BUTTON}
+            aria-label="Thêm vào yêu thích"
+          >
+            <svg
+              className={CLASS_SVG_ICON_GRAY}
+              fill="none"
+              stroke={CLASS_SVG_FILL}
+              viewBox={CLASS_SVG_VIEWBOX}
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </div>

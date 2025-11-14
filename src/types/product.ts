@@ -12,4 +12,3 @@ export interface Product {
   stock?: number
 }
 
-

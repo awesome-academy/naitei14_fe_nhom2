@@ -11,10 +11,19 @@ export const RATING_5 = 5
 export const DISCOUNT_50_PERCENT = 50
 
 // Price constants (in VND)
+export const PRICE_120000 = 120000
 export const PRICE_150000 = 150000
+export const PRICE_180000 = 180000
+export const PRICE_200000 = 200000
 export const PRICE_250000 = 250000
+export const PRICE_300000 = 300000
+export const PRICE_320000 = 320000
+export const PRICE_350000 = 350000
 export const PRICE_375000 = 375000
+export const PRICE_400000 = 400000
+export const PRICE_450000 = 450000
 export const PRICE_500000 = 500000
+export const PRICE_550000 = 550000
 export const PRICE_850000 = 850000
 export const PRICE_1000000 = 1000000
 
@@ -49,6 +58,13 @@ export const CLASS_DOT_INDICATOR = 'w-3 h-3 bg-white bg-opacity-50 rounded-full'
 export const CLASS_TEXT_SM_GRAY = 'text-sm text-gray-400 mb-2'
 export const CLASS_FONT_SEMIBOLD_MB4 = 'font-semibold mb-4'
 export const CLASS_SPACE_Y2_TEXT_SM = 'space-y-2 text-sm text-gray-400'
+export const CLASS_FLEX_ITEMS_GAP2 = 'flex items-center gap-2'
+export const CLASS_SELECT_INPUT = 'px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-primary focus:border-transparent'
+export const CLASS_VIEW_TOGGLE_BUTTON = 'p-2 rounded transition-colors'
+export const CLASS_VIEW_TOGGLE_ACTIVE = 'bg-green-primary text-white'
+export const CLASS_VIEW_TOGGLE_INACTIVE = 'text-gray-600 hover:bg-gray-100'
+export const CLASS_TEXT_CENTER_PY12 = 'text-center py-12'
+
 
 // Grid layout classes
 export const CLASS_GRID_LARGE_CARD_FIRST = 'sm:col-span-2 lg:col-span-2 lg:row-span-2'

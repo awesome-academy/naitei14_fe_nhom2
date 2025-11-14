@@ -1,9 +1,18 @@
 import { Product } from '@/types/product'
 import {
+  PRICE_120000,
   PRICE_150000,
+  PRICE_180000,
+  PRICE_200000,
   PRICE_250000,
+  PRICE_300000,
+  PRICE_320000,
+  PRICE_350000,
   PRICE_375000,
+  PRICE_400000,
+  PRICE_450000,
   PRICE_500000,
+  PRICE_550000,
   PRICE_850000,
   PRICE_1000000,
   RATING_4,
@@ -12,65 +21,223 @@ import {
 } from '@/constants/common'
 import { IMAGES } from '@/constants/images'
 
-// Mock data - Sau này sẽ thay bằng API call
+const mockProducts: Product[] = [
+  {
+    id: 1,
+    name: 'Cây chân chim',
+    price: PRICE_250000,
+    image: IMAGES.PRODUCT_1,
+    isNew: true,
+    rating: RATING_5,
+    description: 'Cây chân chim là loại cây cảnh phổ biến, dễ chăm sóc, thích hợp để trang trí trong nhà và văn phòng.',
+    category: 'Cây cảnh trong nhà',
+    stock: 50,
+  },
+  {
+    id: 2,
+    name: 'Cây Dạ Lam',
+    price: PRICE_500000,
+    oldPrice: PRICE_1000000,
+    image: IMAGES.PRODUCT_2,
+    discountPercent: DISCOUNT_50_PERCENT,
+    rating: RATING_4,
+    description: 'Cây Dạ Lam có lá màu xanh đậm, tạo không gian xanh mát cho ngôi nhà của bạn.',
+    category: 'Cây cảnh trong nhà',
+    stock: 30,
+  },
+  {
+    id: 3,
+    name: 'Cây Danh Dự',
+    price: PRICE_850000,
+    image: IMAGES.PRODUCT_3,
+    isNew: true,
+    rating: RATING_5,
+    description: 'Cây Danh Dự với vẻ đẹp sang trọng, phù hợp để làm quà tặng hoặc trang trí phòng khách.',
+    category: 'Cây cảnh cao cấp',
+    stock: 20,
+  },
+  {
+    id: 4,
+    name: 'Cây cọ ta',
+    price: PRICE_150000,
+    oldPrice: PRICE_250000,
+    image: IMAGES.PRODUCT_4,
+    rating: RATING_4,
+    description: 'Cây cọ ta nhỏ gọn, dễ trồng, thích hợp cho không gian nhỏ như bàn làm việc.',
+    category: 'Cây cảnh mini',
+    stock: 100,
+  },
+  {
+    id: 5,
+    name: 'Cây dứa nhỏ',
+    price: PRICE_375000,
+    oldPrice: PRICE_500000,
+    image: IMAGES.PRODUCT_5,
+    rating: RATING_4,
+    description: 'Cây dứa nhỏ với hình dáng độc đáo, mang lại không khí tươi mát cho căn phòng.',
+    category: 'Cây cảnh trong nhà',
+    stock: 40,
+  },
+  {
+    id: 6,
+    name: 'Cây đa búp đỏ',
+    price: PRICE_500000,
+    oldPrice: PRICE_1000000,
+    image: IMAGES.PRODUCT_6,
+    discountPercent: DISCOUNT_50_PERCENT,
+    rating: RATING_5,
+    description: 'Cây đa búp đỏ với lá màu đỏ đặc trưng, tạo điểm nhấn cho không gian sống.',
+    category: 'Cây cảnh trong nhà',
+    stock: 25,
+  },
+  {
+    id: 7,
+    name: 'Cây trầu bà',
+    price: PRICE_200000,
+    image: IMAGES.PRODUCT_7,
+    rating: RATING_5,
+    description: 'Cây trầu bà dễ sống, thanh lọc không khí tốt, phù hợp cho người mới bắt đầu trồng cây.',
+    category: 'Cây cảnh trong nhà',
+    stock: 80,
+  },
+  {
+    id: 8,
+    name: 'Cây lưỡi hổ',
+    price: PRICE_300000,
+    image: IMAGES.PRODUCT_8,
+    isNew: true,
+    rating: RATING_4,
+    description: 'Cây lưỡi hổ có khả năng lọc không khí tốt, thích hợp đặt trong phòng ngủ.',
+    category: 'Cây cảnh trong nhà',
+    stock: 60,
+  },
+  {
+    id: 9,
+    name: 'Cây kim tiền',
+    price: PRICE_450000,
+    image: IMAGES.PRODUCT_9,
+    rating: RATING_5,
+    description: 'Cây kim tiền mang ý nghĩa phong thủy tốt, được nhiều người yêu thích.',
+    category: 'Cây cảnh phong thủy',
+    stock: 35,
+  },
+  {
+    id: 10,
+    name: 'Cây phát tài',
+    price: PRICE_400000,
+    image: IMAGES.PRODUCT_10,
+    rating: RATING_4,
+    description: 'Cây phát tài với ý nghĩa may mắn, tài lộc, thường được đặt ở phòng khách.',
+    category: 'Cây cảnh phong thủy',
+    stock: 45,
+  },
+  {
+    id: 11,
+    name: 'Cây vạn niên thanh',
+    price: PRICE_350000,
+    image: IMAGES.PRODUCT_11,
+    rating: RATING_4,
+    description: 'Cây vạn niên thanh có lá xanh mướt, dễ chăm sóc, thích hợp cho người bận rộn.',
+    category: 'Cây cảnh trong nhà',
+    stock: 55,
+  },
+  {
+    id: 12,
+    name: 'Cây đuôi công',
+    price: PRICE_550000,
+    image: IMAGES.PRODUCT_12,
+    isNew: true,
+    rating: RATING_5,
+    description: 'Cây đuôi công với lá có hoa văn đẹp mắt, tạo điểm nhấn cho không gian.',
+    category: 'Cây cảnh cao cấp',
+    stock: 28,
+  },
+  {
+    id: 13,
+    name: 'Cây sen đá',
+    price: PRICE_180000,
+    image: IMAGES.PRODUCT_13,
+    rating: RATING_4,
+    description: 'Cây sen đá nhỏ xinh, dễ chăm sóc, thích hợp để bàn làm việc hoặc cửa sổ.',
+    category: 'Cây cảnh mini',
+    stock: 120,
+  },
+  {
+    id: 14,
+    name: 'Cây xương rồng',
+    price: PRICE_120000,
+    image: IMAGES.PRODUCT_14,
+    rating: RATING_4,
+    description: 'Cây xương rồng cứng cáp, không cần tưới nhiều, phù hợp cho người hay quên.',
+    category: 'Cây cảnh mini',
+    stock: 150,
+  },
+  {
+    id: 15,
+    name: 'Cây lan ý',
+    price: PRICE_320000,
+    image: IMAGES.PRODUCT_15,
+    rating: RATING_5,
+    description: 'Cây lan ý có hoa trắng đẹp, thanh lọc không khí tốt, thích hợp đặt trong nhà.',
+    category: 'Cây cảnh trong nhà',
+    stock: 42,
+  },
+]
+
 export const getFeaturedProducts = async (): Promise<Product[]> => {
-  // Simulate API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: 1,
-          name: 'Cây chân chim',
-          price: PRICE_250000,
-          image: IMAGES.PRODUCT_1,
-          isNew: true,
-          rating: RATING_5,
-        },
-        {
-          id: 2,
-          name: 'Cây Dạ Lam',
-          price: PRICE_500000,
-          oldPrice: PRICE_1000000,
-          image: IMAGES.PRODUCT_2,
-          discountPercent: DISCOUNT_50_PERCENT,
-          rating: RATING_4,
-        },
-        {
-          id: 3,
-          name: 'Cây Danh Dự',
-          price: PRICE_850000,
-          image: IMAGES.PRODUCT_3,
-          isNew: true,
-          rating: RATING_5,
-        },
-        {
-          id: 4,
-          name: 'Cây cọ ta',
-          price: PRICE_150000,
-          oldPrice: PRICE_250000,
-          image: IMAGES.PRODUCT_4,
-          rating: RATING_4,
-        },
-        {
-          id: 5,
-          name: 'Cây dứa nhỏ',
-          price: PRICE_375000,
-          oldPrice: PRICE_500000,
-          image: IMAGES.PRODUCT_5,
-          rating: RATING_4,
-        },
-        {
-          id: 6,
-          name: 'Cây đa búp đỏ',
-          price: PRICE_500000,
-          oldPrice: PRICE_1000000,
-          image: IMAGES.PRODUCT_6,
-          discountPercent: DISCOUNT_50_PERCENT,
-          rating: RATING_5,
-        },
-      ])
-    }, 100)
+  await createDelayPromise(API_DELAY_MS)
+  return mockProducts.slice(0, 6)
+}
+
+export const getAllProducts = async (): Promise<Product[]> => {
+  await createDelayPromise(API_DELAY_MS)
+  return mockProducts
+}
+
+export interface ProductFilters {
+  search?: string
+  category?: string
+  minPrice?: number
+  maxPrice?: number
+  color?: string
+}
+
+const API_DELAY_MS = 100
+
+const createDelayPromise = (ms: number) => {
+  return new Promise<void>((resolve) => {
+    window.setTimeout(() => {
+      resolve()
+    }, ms)
   })
 }
 
+export const searchProducts = async (filters: ProductFilters): Promise<Product[]> => {
+  await createDelayPromise(API_DELAY_MS)
+  
+  let filteredProducts = [...mockProducts]
+
+  if (filters.search) {
+    const searchLower = filters.search.toLowerCase()
+    filteredProducts = filteredProducts.filter(
+      (product) =>
+        product.name.toLowerCase().includes(searchLower) ||
+        product.description?.toLowerCase().includes(searchLower)
+    )
+  }
+
+  if (filters.category) {
+    filteredProducts = filteredProducts.filter((product) => product.category === filters.category)
+  }
+
+  if (filters.minPrice !== undefined) {
+    filteredProducts = filteredProducts.filter((product) => product.price >= filters.minPrice!)
+  }
+
+  if (filters.maxPrice !== undefined) {
+    filteredProducts = filteredProducts.filter((product) => product.price <= filters.maxPrice!)
+  }
+
+  return filteredProducts
+}
 
