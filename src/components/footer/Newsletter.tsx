@@ -1,4 +1,16 @@
 import { useState } from 'react'
+import {
+  ERROR_EMAIL_ALREADY_EXISTS,
+  ERROR_NETWORK_CONNECTION,
+  ERROR_SERVER,
+  ERROR_GENERIC,
+  ERROR_KEYWORD_DUPLICATE,
+  ERROR_KEYWORD_ALREADY_EXISTS,
+  ERROR_KEYWORD_NETWORK,
+  ERROR_KEYWORD_FETCH,
+  ERROR_KEYWORD_SERVER,
+  ERROR_KEYWORD_500,
+} from '@/constants/common'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -25,7 +37,7 @@ export const RenderNewsletter = () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500))
       setEmail('')
-    } catch (error) {
+    } catch (error: unknown) {
       if (import.meta.env.DEV) {
         console.error('Error subscribing to newsletter:', {
           error,
@@ -34,7 +46,30 @@ export const RenderNewsletter = () => {
           timestamp: new Date().toISOString(),
         })
       }
-      setError('Đã có lỗi xảy ra. Vui lòng thử lại sau.')
+      
+      if (error instanceof Error) {
+        const errorMessage = error.message.toLowerCase()
+        if (
+          errorMessage.includes(ERROR_KEYWORD_DUPLICATE) ||
+          errorMessage.includes(ERROR_KEYWORD_ALREADY_EXISTS)
+        ) {
+          setError(ERROR_EMAIL_ALREADY_EXISTS)
+        } else if (
+          errorMessage.includes(ERROR_KEYWORD_NETWORK) ||
+          errorMessage.includes(ERROR_KEYWORD_FETCH)
+        ) {
+          setError(ERROR_NETWORK_CONNECTION)
+        } else if (
+          errorMessage.includes(ERROR_KEYWORD_SERVER) ||
+          errorMessage.includes(ERROR_KEYWORD_500)
+        ) {
+          setError(ERROR_SERVER)
+        } else {
+          setError(ERROR_GENERIC)
+        }
+      } else {
+        setError(ERROR_GENERIC)
+      }
     } finally {
       setIsSubmitting(false)
     }

@@ -21,6 +21,20 @@ export const PRICE_1000000 = 1000000
 // Common messages
 export const MESSAGE_DEVELOPING = 'Chức năng đang phát triển' as const
 
+// Newsletter error messages
+export const ERROR_EMAIL_ALREADY_EXISTS = 'Email này đã được đăng ký. Vui lòng sử dụng email khác.' as const
+export const ERROR_NETWORK_CONNECTION = 'Lỗi kết nối mạng. Vui lòng kiểm tra kết nối và thử lại.' as const
+export const ERROR_SERVER = 'Lỗi máy chủ. Vui lòng thử lại sau.' as const
+export const ERROR_GENERIC = 'Đã có lỗi xảy ra. Vui lòng thử lại sau.' as const
+
+// Error keywords for error detection
+export const ERROR_KEYWORD_DUPLICATE = 'duplicate' as const
+export const ERROR_KEYWORD_ALREADY_EXISTS = 'already exists' as const
+export const ERROR_KEYWORD_NETWORK = 'network' as const
+export const ERROR_KEYWORD_FETCH = 'fetch' as const
+export const ERROR_KEYWORD_SERVER = 'server' as const
+export const ERROR_KEYWORD_500 = '500' as const
+
 // Common class names
 export const CLASS_HOVER = 'hover:text-green-primary transition-colors'
 export const CLASS_DISABLED = 'cursor-not-allowed opacity-75'

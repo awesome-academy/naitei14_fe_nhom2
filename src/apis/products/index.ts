@@ -1,4 +1,4 @@
-import { Product } from '../types'
+import { Product } from '@/types/product'
 import {
   PRICE_150000,
   PRICE_250000,
@@ -72,4 +72,5 @@ export const getFeaturedProducts = async (): Promise<Product[]> => {
     }, 100)
   })
 }
+
 
