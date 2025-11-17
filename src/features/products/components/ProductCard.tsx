@@ -50,7 +50,7 @@ export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
               aria-label="Xem nhanh sản phẩm"
             >
               <svg
-                className="w-5 h-5 text-gray-700"
+                className="w-5 h-5 text-primary-text"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -105,4 +105,3 @@ export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
     </div>
   )
 }
-

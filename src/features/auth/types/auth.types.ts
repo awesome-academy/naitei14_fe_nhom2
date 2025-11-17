@@ -8,6 +8,12 @@ export interface RegisterFormData {
   subscribeEmail: boolean;
 }
 
+export interface LoginFormData {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}
+
 export interface RegisterRequest {
   fullName: string;
   phone: string;
@@ -31,6 +37,13 @@ export class ActivationError extends Error {
   }
 }
 
+export class LoginError extends Error {
+  constructor(message: string, public originalError?: Error) {
+    super(message);
+    this.name = "LoginError";
+  }
+}
+
 export class EmailError extends Error {
   constructor(message: string, public originalError?: Error | unknown) {
     super(message);
@@ -43,6 +56,7 @@ export interface User {
   fullName: string;
   phone: string;
   email: string;
+  password: string;
   emailVerified: boolean;
   activationToken?: string;
   website?: string;

@@ -3,6 +3,7 @@ import {
   User,
   RegistrationError,
   ActivationError,
+  LoginError,
 } from "../types/auth.types";
 import { API_BASE_URL } from "@/constants/common";
 import { sendActivationEmail } from "./emailService";
@@ -55,6 +56,53 @@ export const registerUser = async (data: RegisterRequest): Promise<User> => {
       email: user.email,
       timestamp: new Date().toISOString(),
     });
+  }
+
+  return user;
+};
+
+export const loginUser = async (
+  email: string,
+  password: string
+): Promise<User> => {
+  const response = await fetch(`${API_BASE_URL}/users`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    const errorMessage = `Login API failed with status ${response.status}`;
+    console.error("User login API error", {
+      message: errorMessage,
+      status: response.status,
+      url: `${API_BASE_URL}/users`,
+    });
+    throw new LoginError("Đăng nhập thất bại", new Error(errorMessage));
+  }
+
+  const users: User[] = await response.json();
+
+  // Find user by email
+  const user = users.find((u) => u.email === email);
+
+  if (!user) {
+    const errorMessage = "User not found";
+    console.error("Login error", {
+      message: errorMessage,
+      timestamp: new Date().toISOString(),
+    });
+    throw new LoginError("Người dùng không tồn tại");
+  }
+
+  if (user.password !== password) {
+    const errorMessage = "Invalid password";
+    console.error("Login error", {
+      message: errorMessage,
+      timestamp: new Date().toISOString(),
+    });
+    throw new LoginError("Mật khẩu không chính xác");
   }
 
   return user;

@@ -1,4 +1,4 @@
-import { RegisterFormData } from "../types/auth.types";
+import { RegisterFormData, LoginFormData } from "../types/auth.types";
 import { API_BASE_URL } from "@/constants/common";
 import {
   VALIDATION_FULL_NAME_REQUIRED,
@@ -75,6 +75,26 @@ export const validateForm = async (
     errors.confirmPassword = VALIDATION_CONFIRM_PASSWORD_REQUIRED;
   } else if (formData.password !== formData.confirmPassword) {
     errors.confirmPassword = VALIDATION_PASSWORD_MISMATCH;
+  }
+
+  return errors;
+};
+
+export const validateLoginForm = async (
+  formData: LoginFormData
+): Promise<ValidationErrors> => {
+  const errors: ValidationErrors = {};
+
+  // Email: required, valid email
+  if (!formData.email.trim()) {
+    errors.email = VALIDATION_EMAIL_REQUIRED;
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    errors.email = VALIDATION_EMAIL_INVALID;
+  }
+
+  // Password: required
+  if (!formData.password) {
+    errors.password = VALIDATION_PASSWORD_REQUIRED;
   }
 
   return errors;

@@ -5,6 +5,7 @@ import { RegisterFormData } from '../types/auth.types';
 import { useRegister } from '../hooks/useRegister';
 import { validateForm } from '../utils/authValidation';
 import { sendActivationEmail } from '../services/emailService';
+import { RenderButton } from '@/components/ui/Button';
 import {
     CLASS_SECTION_HEADING,
     CLASS_GRID_TWO_COL,
@@ -152,7 +153,7 @@ const RegisterForm: React.FC = () => {
                                 {...register('subscribeEmail')}
                                 className="w-4 h-4 text-green-primary border-gray-300 rounded focus:ring-green-dark"
                             />
-                            <span className="ml-2 text-sm text-gray-700">
+                            <span className="ml-2 text-sm text-primary-text">
                                 Đăng ký nhận thông tin qua email
                             </span>
                         </label>
@@ -230,20 +231,24 @@ const RegisterForm: React.FC = () => {
 
                 {/* Buttons */}
                 <div className="flex gap-4">
-                    <button
+                    <RenderButton
                         type="button"
+                        variant="outline"
+                        size="md"
                         onClick={handleReset}
-                        className="px-8 py-3 border-2 border-green-primary text-green-primary rounded-full hover:bg-green-50 transition-colors"
+                        className="rounded-full px-8 py-3"
                     >
                         QUAY LẠI
-                    </button>
-                    <button
+                    </RenderButton>
+                    <RenderButton
                         type="submit"
-                        disabled={loading}
-                        className="px-8 py-3 bg-green-primary text-white rounded-full hover:bg-green-dark transition-colors disabled:opacity-50"
+                        variant="primary-rounded"
+                        size="md"
+                        isLoading={loading}
+                        loadingText="ĐANG ĐĂNG KÝ..."
                     >
-                        {loading ? 'ĐANG ĐĂNG KÝ...' : 'ĐĂNG KÝ'}
-                    </button>
+                        ĐĂNG KÝ
+                    </RenderButton>
                 </div>
             </form>
         </div>

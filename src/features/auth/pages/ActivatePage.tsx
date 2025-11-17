@@ -41,7 +41,7 @@ const ActivatePage = () => {
                 {status === 'loading' && (
                     <>
                         <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-green-600 mx-auto mb-6"></div>
-                        <h2 className="text-xl font-semibold text-gray-700">Đang kích hoạt tài khoản...</h2>
+                        <h2 className="text-xl font-semibold text-primary-text">Đang kích hoạt tài khoản...</h2>
                         <p className="text-gray-500 mt-2">Vui lòng đợi trong giây lát</p>
                     </>
                 )}
@@ -82,7 +82,7 @@ const ActivatePage = () => {
                             </button>
                             <button
                                 onClick={() => navigate('/')}
-                                className="w-full px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 transition-colors font-medium"
+                                className="w-full px-6 py-3 border-2 border-gray-300 text-primary-text rounded-full hover:bg-gray-50 transition-colors font-medium"
                             >
                                 Về trang chủ
                             </button>

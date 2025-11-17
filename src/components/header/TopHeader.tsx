@@ -1,8 +1,12 @@
 import { Container } from '@/components/ui/Container'
-import { MESSAGE_DEVELOPING, CLASS_DISABLED, CLASS_FLEX_CENTER_GAP4, CLASS_HOVER, CLASS_SVG_ICON_SM, CLASS_SVG_FILL, CLASS_SVG_VIEWBOX } from '@/constants/common'
+import { CLASS_FLEX_CENTER_GAP4, CLASS_HOVER, CLASS_SVG_ICON_SM, CLASS_SVG_FILL, CLASS_SVG_VIEWBOX } from '@/constants/common'
 import { Link } from 'react-router-dom'
+import { LogIn, UserPlus, LogOut } from 'lucide-react'
+import { useAuth } from '@/contexts/AuthContext'
 
 export const RenderTopHeader = () => {
+  const { isLoggedIn, user, logout } = useAuth();
+
   return (
     <div className="bg-gray-dark text-white py-2 text-sm">
       <Container>
@@ -33,16 +37,29 @@ export const RenderTopHeader = () => {
             </div>
           </div>
           <div className={CLASS_FLEX_CENTER_GAP4}>
-            <span className={CLASS_DISABLED} title={MESSAGE_DEVELOPING}>
-              Đăng nhập
-            </span>
-            <Link to="auth/register">
-              Đăng ký
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <span>Welcome, {user?.fullName}!</span>
+                <button onClick={logout} className="flex items-center gap-1 hover:text-gray-300">
+                  <LogOut size={16} />
+                  Đăng xuất
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="auth/login" className="flex items-center gap-1 hover:text-gray-300">
+                  <LogIn size={16} />
+                  Đăng nhập
+                </Link>
+                <Link to="auth/register" className="flex items-center gap-1 hover:text-gray-300">
+                  <UserPlus size={16} />
+                  Đăng ký
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </Container>
     </div>
   )
 }
-
