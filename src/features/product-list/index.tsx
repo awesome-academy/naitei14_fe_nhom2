@@ -2,16 +2,16 @@ import { useEffect, useState, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Container } from '@/components/ui/Container'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { ProductCard } from './components/ProductCard'
+import { ProductCard } from '@/components/products/ProductCard'
 import { RenderProductCardList } from './components/ProductCardList'
 import { ProductFilter } from './components/ProductFilter'
-import { RenderPagination } from './components/Pagination'
-import { Product } from './types'
-import { getAllProducts, searchProducts, ProductFilters } from './apis'
+import { RenderPagination } from '@/components/products/Pagination'
+import { Product } from '@/types/product'
+import { getAllProducts, searchProducts, ProductFilters } from '@/apis/products'
 import {
   CLASS_SECTION_WHITE,
   CLASS_FLEX_ITEMS_GAP2,
-  CLASS_TEXT_SM_GRAY_LABEL,
+  CLASS_TEXT_SM_GRAY,
   CLASS_SELECT_INPUT,
   CLASS_VIEW_TOGGLE_BUTTON,
   CLASS_VIEW_TOGGLE_ACTIVE,
@@ -86,7 +86,12 @@ export const RenderProducts = () => {
     const fetchFilteredProducts = async () => {
       if (allProducts.length === 0) return
 
-      const hasActiveFilters = filters.search || filters.category || filters.minPrice !== undefined || filters.maxPrice !== undefined || filters.color
+      const hasActiveFilters = 
+        Boolean(filters.search) || 
+        Boolean(filters.category) || 
+        filters.minPrice !== undefined || 
+        filters.maxPrice !== undefined || 
+        Boolean(filters.color)
 
       if (!hasActiveFilters) {
         setFilteredProducts(allProducts)
@@ -150,6 +155,12 @@ export const RenderProducts = () => {
     }
   }
 
+  const handleClearAllFilters = () => {
+    setFilters({})
+    setCurrentPage(1)
+    setSearchParams({})
+  }
+
   return (
     <section className={CLASS_SECTION_WHITE}>
       <Container>
@@ -163,7 +174,12 @@ export const RenderProducts = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           <div className="lg:col-span-1">
-            <ProductFilter categories={categoriesWithCount} onFilterChange={handleFilterChange} />
+            <ProductFilter 
+              categories={categoriesWithCount} 
+              onFilterChange={handleFilterChange}
+              searchValue={filters.search}
+              onClearAll={handleClearAllFilters}
+            />
           </div>
 
           <div className="lg:col-span-3">
@@ -174,8 +190,9 @@ export const RenderProducts = () => {
 
               <div className="flex flex-wrap items-center gap-4">
                 <div className={CLASS_FLEX_ITEMS_GAP2}>
-                  <label className={CLASS_TEXT_SM_GRAY_LABEL}>Sắp xếp theo:</label>
+                  <label htmlFor="sort-select" className={CLASS_TEXT_SM_GRAY}>Sắp xếp theo:</label>
                   <select
+                    id="sort-select"
                     value={sortOption}
                     onChange={(e) => setSortOption(e.target.value as SortOption)}
                     className={CLASS_SELECT_INPUT}
@@ -187,8 +204,9 @@ export const RenderProducts = () => {
                 </div>
 
                 <div className={CLASS_FLEX_ITEMS_GAP2}>
-                  <label className={CLASS_TEXT_SM_GRAY_LABEL}>Show:</label>
+                  <label htmlFor="items-per-page-select" className={CLASS_TEXT_SM_GRAY}>Show:</label>
                   <select
+                    id="items-per-page-select"
                     value={itemsPerPage}
                     onChange={(e) => {
                       setItemsPerPage(Number(e.target.value))
@@ -211,6 +229,7 @@ export const RenderProducts = () => {
                       viewMode === 'grid' ? CLASS_VIEW_TOGGLE_ACTIVE : CLASS_VIEW_TOGGLE_INACTIVE
                     )}
                     aria-label="Grid view"
+                    aria-pressed={viewMode === 'grid'}
                   >
                     <svg className={CLASS_SVG_ICON} fill="none" stroke={CLASS_SVG_FILL} viewBox={CLASS_SVG_VIEWBOX}>
                       <path
@@ -228,6 +247,7 @@ export const RenderProducts = () => {
                       viewMode === 'list' ? CLASS_VIEW_TOGGLE_ACTIVE : CLASS_VIEW_TOGGLE_INACTIVE
                     )}
                     aria-label="List view"
+                    aria-pressed={viewMode === 'list'}
                   >
                     <svg className={CLASS_SVG_ICON} fill="none" stroke={CLASS_SVG_FILL} viewBox={CLASS_SVG_VIEWBOX}>
                       <path
@@ -250,7 +270,7 @@ export const RenderProducts = () => {
               <div className={CLASS_TEXT_CENTER_PY12}>
                 <div className="text-gray-500 mb-2">Không tìm thấy sản phẩm nào</div>
                 <div className="text-sm text-gray-400">
-                  {filters.search || filters.category || filters.minPrice || filters.maxPrice
+                  {filters.search || filters.category || filters.minPrice !== undefined || filters.maxPrice !== undefined || filters.color
                     ? 'Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc'
                     : 'Danh sách sản phẩm trống'}
                 </div>

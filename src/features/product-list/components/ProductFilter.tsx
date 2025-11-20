@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
-import { ProductFilters } from '../apis'
+import { ProductFilters } from '@/apis/products'
 import { LOCALE } from '@/constants/common'
 
 interface CategoryWithCount {
@@ -11,6 +11,8 @@ interface CategoryWithCount {
 interface ProductFilterProps {
   categories: CategoryWithCount[]
   onFilterChange: (filters: ProductFilters) => void
+  searchValue?: string
+  onClearAll?: () => void
   className?: string
 }
 
@@ -34,7 +36,7 @@ const COLORS = [
   { name: 'Hồng', value: 'pink', hex: '#EC4899' },
 ]
 
-export const ProductFilter = ({ categories, onFilterChange, className }: ProductFilterProps) => {
+export const ProductFilter = ({ categories, onFilterChange, searchValue, onClearAll, className }: ProductFilterProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [selectedPriceRange, setSelectedPriceRange] = useState<{ min: number; max: number } | null>(null)
   const [selectedColor, setSelectedColor] = useState<string>('')
@@ -79,10 +81,14 @@ export const ProductFilter = ({ categories, onFilterChange, className }: Product
     setSelectedCategory('')
     setSelectedPriceRange(null)
     setSelectedColor('')
-    onFilterChange({})
+    if (onClearAll) {
+      onClearAll()
+    } else {
+      onFilterChange({})
+    }
   }
 
-  const hasActiveFilters = selectedCategory || selectedPriceRange || selectedColor
+  const hasActiveFilters = selectedCategory || selectedPriceRange || selectedColor || Boolean(searchValue)
 
   return (
     <div className={cn('bg-white p-4 rounded-lg shadow-sm border border-gray-200', className)}>
@@ -93,10 +99,18 @@ export const ProductFilter = ({ categories, onFilterChange, className }: Product
             onClick={handleReset}
             className="text-sm text-green-primary hover:text-green-dark transition-colors"
           >
-            Xóa bộ lọc
+            Xóa tất cả bộ lọc
           </button>
         )}
       </div>
+
+      {searchValue && (
+        <div className="mb-4 p-3 bg-gray-50 rounded-md">
+          <div className="text-sm text-gray-600">
+            <span className="font-medium">Tìm kiếm:</span> <span className="text-gray-800">"{searchValue}"</span>
+          </div>
+        </div>
+      )}
 
       <div className="space-y-6">
         <div>

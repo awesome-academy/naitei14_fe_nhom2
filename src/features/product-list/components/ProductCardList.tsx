@@ -1,16 +1,33 @@
+import { useState } from 'react'
 import { Badge } from '@/components/ui/Badge'
-import { Product } from '../types'
-import { LOCALE, MAX_RATING, DEFAULT_RATING, CLASS_SVG_FILL, CLASS_SVG_VIEWBOX } from '@/constants/common'
+import { Product } from '@/types/product'
+import {
+  LOCALE,
+  MAX_RATING,
+  DEFAULT_RATING,
+  CLASS_ICON_SIZE_MD_GRAY,
+  CLASS_FLEX_ITEMS_GAP2,
+  MESSAGE_REMOVE_FAVORITE,
+  MESSAGE_ADD_FAVORITE,
+} from '@/constants/common'
+import { MagnifyingGlassIcon, HeartIcon, StarIcon } from '@heroicons/react/24/outline'
+import { StarIcon as StarIconSolid, HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid'
 
 interface ProductCardListProps {
   product: Product
 }
 
-const CLASS_FLEX_ITEMS_GAP2 = 'flex items-center gap-2'
 const CLASS_ICON_BUTTON = 'bg-white border border-gray-300 p-2 rounded-md hover:bg-gray-50 transition-colors'
-const CLASS_SVG_ICON_GRAY = 'w-5 h-5 text-gray-700'
 
 export const RenderProductCardList = ({ product }: ProductCardListProps) => {
+  const [isFavorite, setIsFavorite] = useState(false)
+
+  const handleToggleFavorite = () => {
+    setIsFavorite(!isFavorite)
+    // TODO: Add to favorites
+    // Implementation pending
+  }
+
   return (
     <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-4 border border-gray-200">
       <div className="flex flex-col sm:flex-row gap-4">
@@ -34,17 +51,11 @@ export const RenderProductCardList = ({ product }: ProductCardListProps) => {
           <div className="flex items-center gap-1 mb-2">
             {[...Array(MAX_RATING)].map((_, i) => {
               const rating = product.rating ?? DEFAULT_RATING
-              return (
-                <svg
-                  key={i}
-                  className={`w-4 h-4 ${
-                    i < Math.floor(rating) ? 'text-yellow-400 fill-current' : 'text-gray-300 fill-current'
-                  }`}
-                  viewBox="0 0 20 20"
-                  aria-hidden="true"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+              const isFilled = i < Math.floor(rating)
+              return isFilled ? (
+                <StarIconSolid key={i} className="w-4 h-4 text-yellow-400" />
+              ) : (
+                <StarIcon key={i} className="w-4 h-4 text-gray-300" />
               )
             })}
           </div>
@@ -73,42 +84,24 @@ export const RenderProductCardList = ({ product }: ProductCardListProps) => {
                 MUA NGAY
               </button>
               <button
+                onClick={() => {
+                  // TODO: Open quick view modal
+                }}
                 className={CLASS_ICON_BUTTON}
                 aria-label="Xem nhanh sản phẩm"
               >
-                <svg
-                  className={CLASS_SVG_ICON_GRAY}
-                  fill="none"
-                  stroke={CLASS_SVG_FILL}
-                  viewBox={CLASS_SVG_VIEWBOX}
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
+                <MagnifyingGlassIcon className={CLASS_ICON_SIZE_MD_GRAY} />
               </button>
               <button
+                onClick={handleToggleFavorite}
                 className={CLASS_ICON_BUTTON}
-                aria-label="Thêm vào yêu thích"
+                aria-label={isFavorite ? MESSAGE_REMOVE_FAVORITE : MESSAGE_ADD_FAVORITE}
               >
-                <svg
-                  className={CLASS_SVG_ICON_GRAY}
-                  fill="none"
-                  stroke={CLASS_SVG_FILL}
-                  viewBox={CLASS_SVG_VIEWBOX}
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
+                {isFavorite ? (
+                  <HeartIconSolid className="w-5 h-5 text-red-500" />
+                ) : (
+                  <HeartIcon className={CLASS_ICON_SIZE_MD_GRAY} />
+                )}
               </button>
             </div>
           </div>

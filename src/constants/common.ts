@@ -65,6 +65,19 @@ export const CLASS_VIEW_TOGGLE_ACTIVE = 'bg-green-primary text-white'
 export const CLASS_VIEW_TOGGLE_INACTIVE = 'text-gray-600 hover:bg-gray-100'
 export const CLASS_TEXT_CENTER_PY12 = 'text-center py-12'
 
+// Icon size classes
+export const CLASS_ICON_SIZE_MD = 'w-5 h-5'
+export const CLASS_ICON_SIZE_MD_GRAY = 'w-5 h-5 text-gray-700'
+
+// Favorite messages
+export const MESSAGE_REMOVE_FAVORITE = 'Bỏ yêu thích' as const
+export const MESSAGE_ADD_FAVORITE = 'Thêm vào yêu thích' as const
+
+// Navigation hover class
+export const CLASS_NAV_HOVER = 'hover:text-green-200 transition-colors font-semibold'
+
+// Context constants
+export const CONTEXT_RENDER_PRODUCTS = 'RenderProducts' as const
 
 // Grid layout classes
 export const CLASS_GRID_LARGE_CARD_FIRST = 'sm:col-span-2 lg:col-span-2 lg:row-span-2'

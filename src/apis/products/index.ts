@@ -21,6 +21,16 @@ import {
 } from '@/constants/common'
 import { IMAGES } from '@/constants/images'
 
+const API_DELAY_MS = 100
+
+const createDelayPromise = (ms: number) => {
+  return new Promise<void>((resolve) => {
+    window.setTimeout(() => {
+      resolve()
+    }, ms)
+  })
+}
+
 const mockProducts: Product[] = [
   {
     id: 1,
@@ -32,6 +42,7 @@ const mockProducts: Product[] = [
     description: 'Cây chân chim là loại cây cảnh phổ biến, dễ chăm sóc, thích hợp để trang trí trong nhà và văn phòng.',
     category: 'Cây cảnh trong nhà',
     stock: 50,
+    color: 'green',
   },
   {
     id: 2,
@@ -44,6 +55,7 @@ const mockProducts: Product[] = [
     description: 'Cây Dạ Lam có lá màu xanh đậm, tạo không gian xanh mát cho ngôi nhà của bạn.',
     category: 'Cây cảnh trong nhà',
     stock: 30,
+    color: 'green',
   },
   {
     id: 3,
@@ -55,6 +67,7 @@ const mockProducts: Product[] = [
     description: 'Cây Danh Dự với vẻ đẹp sang trọng, phù hợp để làm quà tặng hoặc trang trí phòng khách.',
     category: 'Cây cảnh cao cấp',
     stock: 20,
+    color: 'green',
   },
   {
     id: 4,
@@ -66,6 +79,7 @@ const mockProducts: Product[] = [
     description: 'Cây cọ ta nhỏ gọn, dễ trồng, thích hợp cho không gian nhỏ như bàn làm việc.',
     category: 'Cây cảnh mini',
     stock: 100,
+    color: 'green',
   },
   {
     id: 5,
@@ -77,6 +91,7 @@ const mockProducts: Product[] = [
     description: 'Cây dứa nhỏ với hình dáng độc đáo, mang lại không khí tươi mát cho căn phòng.',
     category: 'Cây cảnh trong nhà',
     stock: 40,
+    color: 'green',
   },
   {
     id: 6,
@@ -89,6 +104,7 @@ const mockProducts: Product[] = [
     description: 'Cây đa búp đỏ với lá màu đỏ đặc trưng, tạo điểm nhấn cho không gian sống.',
     category: 'Cây cảnh trong nhà',
     stock: 25,
+    color: 'orange',
   },
   {
     id: 7,
@@ -99,6 +115,7 @@ const mockProducts: Product[] = [
     description: 'Cây trầu bà dễ sống, thanh lọc không khí tốt, phù hợp cho người mới bắt đầu trồng cây.',
     category: 'Cây cảnh trong nhà',
     stock: 80,
+    color: 'green',
   },
   {
     id: 8,
@@ -110,6 +127,7 @@ const mockProducts: Product[] = [
     description: 'Cây lưỡi hổ có khả năng lọc không khí tốt, thích hợp đặt trong phòng ngủ.',
     category: 'Cây cảnh trong nhà',
     stock: 60,
+    color: 'green',
   },
   {
     id: 9,
@@ -120,6 +138,7 @@ const mockProducts: Product[] = [
     description: 'Cây kim tiền mang ý nghĩa phong thủy tốt, được nhiều người yêu thích.',
     category: 'Cây cảnh phong thủy',
     stock: 35,
+    color: 'green',
   },
   {
     id: 10,
@@ -130,6 +149,7 @@ const mockProducts: Product[] = [
     description: 'Cây phát tài với ý nghĩa may mắn, tài lộc, thường được đặt ở phòng khách.',
     category: 'Cây cảnh phong thủy',
     stock: 45,
+    color: 'green',
   },
   {
     id: 11,
@@ -140,6 +160,7 @@ const mockProducts: Product[] = [
     description: 'Cây vạn niên thanh có lá xanh mướt, dễ chăm sóc, thích hợp cho người bận rộn.',
     category: 'Cây cảnh trong nhà',
     stock: 55,
+    color: 'green',
   },
   {
     id: 12,
@@ -151,6 +172,7 @@ const mockProducts: Product[] = [
     description: 'Cây đuôi công với lá có hoa văn đẹp mắt, tạo điểm nhấn cho không gian.',
     category: 'Cây cảnh cao cấp',
     stock: 28,
+    color: 'purple',
   },
   {
     id: 13,
@@ -161,6 +183,7 @@ const mockProducts: Product[] = [
     description: 'Cây sen đá nhỏ xinh, dễ chăm sóc, thích hợp để bàn làm việc hoặc cửa sổ.',
     category: 'Cây cảnh mini',
     stock: 120,
+    color: 'green',
   },
   {
     id: 14,
@@ -171,6 +194,7 @@ const mockProducts: Product[] = [
     description: 'Cây xương rồng cứng cáp, không cần tưới nhiều, phù hợp cho người hay quên.',
     category: 'Cây cảnh mini',
     stock: 150,
+    color: 'green',
   },
   {
     id: 15,
@@ -181,6 +205,7 @@ const mockProducts: Product[] = [
     description: 'Cây lan ý có hoa trắng đẹp, thanh lọc không khí tốt, thích hợp đặt trong nhà.',
     category: 'Cây cảnh trong nhà',
     stock: 42,
+    color: 'green',
   },
 ]
 
@@ -202,16 +227,6 @@ export interface ProductFilters {
   color?: string
 }
 
-const API_DELAY_MS = 100
-
-const createDelayPromise = (ms: number) => {
-  return new Promise<void>((resolve) => {
-    window.setTimeout(() => {
-      resolve()
-    }, ms)
-  })
-}
-
 export const searchProducts = async (filters: ProductFilters): Promise<Product[]> => {
   await createDelayPromise(API_DELAY_MS)
   
@@ -231,11 +246,18 @@ export const searchProducts = async (filters: ProductFilters): Promise<Product[]
   }
 
   if (filters.minPrice !== undefined) {
-    filteredProducts = filteredProducts.filter((product) => product.price >= filters.minPrice!)
+    const minPrice = filters.minPrice
+    filteredProducts = filteredProducts.filter((product) => product.price >= minPrice)
   }
 
   if (filters.maxPrice !== undefined) {
-    filteredProducts = filteredProducts.filter((product) => product.price <= filters.maxPrice!)
+    const maxPrice = filters.maxPrice
+    filteredProducts = filteredProducts.filter((product) => product.price <= maxPrice)
+  }
+
+  if (filters.color) {
+    const color = filters.color
+    filteredProducts = filteredProducts.filter((product) => product.color === color)
   }
 
   return filteredProducts

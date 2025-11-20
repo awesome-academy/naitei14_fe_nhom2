@@ -1,17 +1,35 @@
 import { useState } from 'react'
 import { Badge } from '@/components/ui/Badge'
 import { Product } from '@/types/product'
-import { LOCALE, MAX_RATING, DEFAULT_RATING } from '@/constants/common'
-import { MagnifyingGlassIcon, StarIcon } from '@heroicons/react/24/outline'
-import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid'
+import {
+  LOCALE,
+  MAX_RATING,
+  DEFAULT_RATING,
+  CLASS_ICON_SIZE_MD,
+  CLASS_ICON_SIZE_MD_GRAY,
+  MESSAGE_REMOVE_FAVORITE,
+  MESSAGE_ADD_FAVORITE,
+} from '@/constants/common'
+import {
+  MagnifyingGlassIcon,
+  StarIcon,
+  HeartIcon,
+} from '@heroicons/react/24/outline'
+import { StarIcon as StarIconSolid, HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid'
+
+const CLASS_ICON_BUTTON = 'bg-white border border-gray-300 p-2 rounded-md hover:bg-gray-50 transition-colors'
+const CLASS_ICON_BUTTON_HOVER = 'bg-white p-3 rounded-full hover:bg-green-primary hover:text-white transition-colors'
 
 interface ProductCardProps {
   product: Product
   isLarge?: boolean
+  variant?: 'home' | 'default'
 }
 
-export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
+export const ProductCard = ({ product, isLarge = false, variant = 'default' }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(false)
+  const isHomeVariant = variant === 'home'
 
   const handleBuyNow = () => {
     // TODO: Navigate to product detail page or add to cart
@@ -23,15 +41,21 @@ export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
     // Implementation pending
   }
 
+  const handleToggleFavorite = () => {
+    setIsFavorite(!isFavorite)
+    // TODO: Add to favorites
+    // Implementation pending
+  }
+
   return (
     <div
       className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-4 relative group h-full ${
         isLarge ? 'flex flex-col' : ''
       }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onFocus={() => setIsHovered(true)}
-      onBlur={() => setIsHovered(false)}
+      onMouseEnter={() => isHomeVariant && setIsHovered(true)}
+      onMouseLeave={() => isHomeVariant && setIsHovered(false)}
+      onFocus={() => isHomeVariant && setIsHovered(true)}
+      onBlur={() => isHomeVariant && setIsHovered(false)}
       tabIndex={0}
     >
       {product.isNew && <Badge variant="new">NEW</Badge>}
@@ -52,7 +76,7 @@ export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
         
-        {isHovered && (
+        {isHomeVariant && isHovered && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center gap-3 transition-opacity duration-300">
             <button
               onClick={handleBuyNow}
@@ -63,10 +87,21 @@ export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
             </button>
             <button
               onClick={handleQuickView}
-              className="bg-white p-3 rounded-full hover:bg-green-primary hover:text-white transition-colors"
+              className={CLASS_ICON_BUTTON_HOVER}
               aria-label="Xem nhanh sản phẩm"
             >
-              <MagnifyingGlassIcon className="w-5 h-5" />
+              <MagnifyingGlassIcon className={CLASS_ICON_SIZE_MD} />
+            </button>
+            <button
+              onClick={handleToggleFavorite}
+              className={CLASS_ICON_BUTTON_HOVER}
+              aria-label={isFavorite ? MESSAGE_REMOVE_FAVORITE : MESSAGE_ADD_FAVORITE}
+            >
+              {isFavorite ? (
+                <HeartIconSolid className={CLASS_ICON_SIZE_MD} />
+              ) : (
+                <HeartIcon className={CLASS_ICON_SIZE_MD} />
+              )}
             </button>
           </div>
         )}
@@ -89,7 +124,7 @@ export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
           })}
         </div>
 
-        {product.description && (
+        {!isHomeVariant && product.description && (
           <p className="text-xs text-gray-600 mb-3 line-clamp-2 px-2">{product.description}</p>
         )}
 
@@ -104,52 +139,35 @@ export const ProductCard = ({ product, isLarge = false }: ProductCardProps) => {
           )}
         </div>
         
-        <div className="flex items-center justify-center gap-2">
-          <button
-            className="bg-green-primary text-white px-4 py-2 rounded-md hover:bg-green-dark transition-colors font-semibold text-sm flex-1"
-            aria-label="Mua ngay sản phẩm"
-          >
-            MUA NGAY
-          </button>
-          <button
-            className={CLASS_ICON_BUTTON}
-            aria-label="Xem nhanh sản phẩm"
-          >
-            <svg
-              className={CLASS_SVG_ICON_GRAY}
-              fill="none"
-              stroke={CLASS_SVG_FILL}
-              viewBox={CLASS_SVG_VIEWBOX}
-              aria-hidden="true"
+        {!isHomeVariant && (
+          <div className="flex items-center justify-center gap-2 mt-3">
+            <button
+              onClick={handleBuyNow}
+              className="bg-green-primary text-white px-4 py-2 rounded-md hover:bg-green-dark transition-colors font-semibold text-sm flex-1"
+              aria-label="Mua ngay sản phẩm"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d={SEARCH_ICON_PATH}
-              />
-            </svg>
-          </button>
-          <button
-            className={CLASS_ICON_BUTTON}
-            aria-label="Thêm vào yêu thích"
-          >
-            <svg
-              className={CLASS_SVG_ICON_GRAY}
-              fill="none"
-              stroke={CLASS_SVG_FILL}
-              viewBox={CLASS_SVG_VIEWBOX}
-              aria-hidden="true"
+              MUA NGAY
+            </button>
+            <button
+              onClick={handleQuickView}
+              className={CLASS_ICON_BUTTON}
+              aria-label="Xem nhanh sản phẩm"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              />
-            </svg>
-          </button>
-        </div>
+              <MagnifyingGlassIcon className={CLASS_ICON_SIZE_MD_GRAY} />
+            </button>
+            <button
+              onClick={handleToggleFavorite}
+              className={CLASS_ICON_BUTTON}
+              aria-label={isFavorite ? MESSAGE_REMOVE_FAVORITE : MESSAGE_ADD_FAVORITE}
+            >
+              {isFavorite ? (
+                <HeartIconSolid className="w-5 h-5 text-red-500" />
+              ) : (
+                <HeartIcon className={CLASS_ICON_SIZE_MD_GRAY} />
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )

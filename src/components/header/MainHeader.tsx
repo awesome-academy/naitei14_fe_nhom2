@@ -1,12 +1,11 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Container } from '@/components/ui/Container'
-import { MESSAGE_DEVELOPING, CLASS_DISABLED, CLASS_SVG_ICON } from '@/constants/common'
+import { MESSAGE_DEVELOPING, CLASS_DISABLED, CLASS_SVG_ICON, CLASS_NAV_HOVER } from '@/constants/common'
 import {
   MagnifyingGlassIcon,
   ShoppingCartIcon,
   Bars3Icon,
-  ChevronDownIcon,
 } from '@heroicons/react/24/outline'
 
 const MAX_SEARCH_LENGTH = 100
@@ -14,12 +13,46 @@ const MAX_SEARCH_LENGTH = 100
 const handleSanitizeInput = (input: string): string => {
   return input
     .replace(/[<>]/g, '')
-    .trim()
     .slice(0, MAX_SEARCH_LENGTH)
 }
 
 export const RenderMainHeader = () => {
   const [searchQuery, setSearchQuery] = useState('')
+  const navigate = useNavigate()
+  const location = useLocation()
+  const debounceTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null)
+
+  useEffect(() => {
+    const searchParam = new URLSearchParams(location.search).get('search')
+    if (searchParam !== null) {
+      setSearchQuery(searchParam)
+    } else if (location.pathname !== '/products') {
+      setSearchQuery('')
+    }
+  }, [location])
+
+  useEffect(() => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current)
+    }
+
+    if (location.pathname === '/products') {
+      debounceTimerRef.current = window.setTimeout(() => {
+        const trimmedQuery = searchQuery.trim()
+        if (trimmedQuery) {
+          navigate(`/products?search=${encodeURIComponent(trimmedQuery)}`, { replace: true })
+        } else {
+          navigate('/products', { replace: true })
+        }
+      }, 300)
+    }
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current)
+      }
+    }
+  }, [searchQuery, navigate, location.pathname])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const sanitized = handleSanitizeInput(e.target.value)
@@ -28,7 +61,12 @@ export const RenderMainHeader = () => {
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!searchQuery.trim()) return
+    const trimmedQuery = searchQuery.trim()
+    if (trimmedQuery) {
+      navigate(`/products?search=${encodeURIComponent(trimmedQuery)}`)
+    } else {
+      navigate('/products')
+    }
   }
 
   return (
@@ -80,16 +118,15 @@ export const RenderMainHeader = () => {
             <button className="md:hidden text-white" aria-label="Menu">
               <Bars3Icon className="w-6 h-6" />
             </button>
-            <Link to="/" className="hover:text-green-200 transition-colors font-semibold">
+            <Link to="/" className={CLASS_NAV_HOVER}>
               TRANG CHỦ
             </Link>
             <span className={CLASS_DISABLED} title={MESSAGE_DEVELOPING}>
               GIỚI THIỆU
             </span>
-            <span className={`${CLASS_DISABLED} flex items-center gap-1`} title={MESSAGE_DEVELOPING}>
+            <Link to="/products" className={CLASS_NAV_HOVER}>
               SẢN PHẨM
-              <ChevronDownIcon className="w-4 h-4" />
-            </span>
+            </Link>
             <span className={CLASS_DISABLED} title={MESSAGE_DEVELOPING}>
               SẢN PHẨM MỚI
             </span>
