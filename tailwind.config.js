@@ -12,9 +12,10 @@ export default {
         'gray-dark': '#3D3D3D',
         'gray-light': '#727272',
       },
+      textColor: {
+        'primary-text': '#374151', // text-gray-700 equivalent
+      },
     },
   },
   plugins: [],
 }
-
-
