@@ -1,3 +1,6 @@
+/**
+ * Data structure for the registration form inputs.
+ */
 export interface RegisterFormData {
   fullName: string;
   phone: string;
@@ -8,6 +11,10 @@ export interface RegisterFormData {
   subscribeEmail: boolean;
 }
 
+/**
+ * Data structure for the registration API request.
+ * Note: website and subscribeEmail are optional fields.
+ */
 export interface RegisterRequest {
   fullName: string;
   phone: string;
@@ -37,6 +44,9 @@ export class EmailError extends Error {
     this.name = "EmailError";
   }
 }
+/**
+ * Data structure for the user object.
+ */
 
 export interface User {
   id: string;

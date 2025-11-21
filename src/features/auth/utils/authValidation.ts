@@ -1,5 +1,5 @@
 import { RegisterFormData } from "../types/auth.types";
-import { API_BASE_URL } from "@/constants/common";
+import { checkEmailExists } from "../services/authAPI";
 import {
   VALIDATION_FULL_NAME_REQUIRED,
   VALIDATION_PHONE_REQUIRED,
@@ -24,15 +24,17 @@ export const validateForm = async (
 ): Promise<ValidationErrors> => {
   const errors: ValidationErrors = {};
 
-  // Full name: required
+  // Full name: required, no numbers or special characters
   if (!formData.fullName.trim()) {
     errors.fullName = VALIDATION_FULL_NAME_REQUIRED;
+  } else if (!/^[a-zA-ZÀ-ỹ\s'-]+$/.test(formData.fullName.trim())) {
+    errors.fullName = "Họ tên không được chứa số hoặc ký tự đặc biệt";
   }
 
-  // Phone: required, basic phone validation
+  // Phone: required, Vietnamese phone validation (starts with 0, 10 digits)
   if (!formData.phone.trim()) {
     errors.phone = VALIDATION_PHONE_REQUIRED;
-  } else if (!/^\d{10,}$/.test(formData.phone.replace(/\s/g, ""))) {
+  } else if (!/^0\d{9}$/.test(formData.phone.replace(/\s/g, ""))) {
     errors.phone = VALIDATION_PHONE_INVALID;
   }
 
@@ -43,12 +45,8 @@ export const validateForm = async (
     errors.email = VALIDATION_EMAIL_INVALID;
   } else {
     try {
-      const response = await fetch(`${API_BASE_URL}/users`);
-      const users = await response.json();
-      if (
-        Array.isArray(users) &&
-        users.some((user: any) => user.email === formData.email)
-      ) {
+      const emailExists = await checkEmailExists(formData.email);
+      if (emailExists) {
         errors.email = VALIDATION_EMAIL_EXISTS;
       }
     } catch (err) {
