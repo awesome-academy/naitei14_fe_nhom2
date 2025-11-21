@@ -120,6 +120,7 @@ export const checkEmailExists = async (email: string): Promise<boolean> => {
   }
 
   const users = await response.json();
+
   return users.length > 0;
 };
 
