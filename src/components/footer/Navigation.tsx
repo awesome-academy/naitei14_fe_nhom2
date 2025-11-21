@@ -1,34 +1,6 @@
 import { CLASS_HOVER, CLASS_TEXT_SM_GRAY, CLASS_FONT_SEMIBOLD_MB4, CLASS_SPACE_Y2_TEXT_SM } from '@/constants/common'
 
-interface NavigationSectionProps {
-  title: string
-  links: string[]
-  className?: string
-}
-
-const RenderNavigationSection = ({ title, links, className = '' }: NavigationSectionProps) => {
-  return (
-    <div>
-      <div className={CLASS_FONT_SEMIBOLD_MB4}>{title}</div>
-      <ul className={`${CLASS_SPACE_Y2_TEXT_SM} ${className}`}>
-        {links.map((link) => (
-          <li key={link}>
-            <a href="#" className={CLASS_HOVER}>
-              {link}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
 export const RenderNavigation = () => {
-  const customerInfoLinks = ['Hệ thống cửa hàng', 'Tài khoản của tôi', 'Sản phẩm yêu thích', 'Chính sách đổi trả', 'Giao hàng']
-  const supportLinks = ['Chính sách giao hàng', 'Hướng dẫn mua hàng', 'Tích điểm đổi quà', 'Câu hỏi thường gặp']
-  const policyLinks = ['Chính sách đổi trả', 'Chính sách bảo hành', 'Chính sách hoàn tiền']
-  const newsLinks = ['Tin tức', 'Khuyến mãi', 'Tuyển dụng', 'Liên hệ']
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
@@ -39,13 +11,41 @@ export const RenderNavigation = () => {
         <p className="text-sm text-gray-400">Email: contact@greenshop.com</p>
       </div>
 
-      <RenderNavigationSection title="THÔNG TIN KHÁCH HÀNG" links={customerInfoLinks} />
-
-      <RenderNavigationSection title="HỖ TRỢ DỊCH VỤ" links={supportLinks} />
+      <div>
+        <div className={CLASS_FONT_SEMIBOLD_MB4}>THÔNG TIN KHÁCH HÀNG</div>
+        <ul className={CLASS_SPACE_Y2_TEXT_SM}>
+          <li><a href="#" className={CLASS_HOVER}>Hệ thống cửa hàng</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Tài khoản của tôi</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Sản phẩm yêu thích</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Chính sách đổi trả</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Giao hàng</a></li>
+        </ul>
+      </div>
 
       <div>
-        <RenderNavigationSection title="CHÍNH SÁCH ƯU ĐÃI" links={policyLinks} className="mb-6" />
-        <RenderNavigationSection title="TIN TỨC" links={newsLinks} />
+        <div className={CLASS_FONT_SEMIBOLD_MB4}>HỖ TRỢ DỊCH VỤ</div>
+        <ul className={CLASS_SPACE_Y2_TEXT_SM}>
+          <li><a href="#" className={CLASS_HOVER}>Chính sách giao hàng</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Hướng dẫn mua hàng</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Tích điểm đổi quà</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div className={CLASS_FONT_SEMIBOLD_MB4}>CHÍNH SÁCH ƯU ĐÃI</div>
+        <ul className={`${CLASS_SPACE_Y2_TEXT_SM} mb-6`}>
+          <li><a href="#" className={CLASS_HOVER}>Chính sách đổi trả</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Chính sách bảo hành</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Chính sách hoàn tiền</a></li>
+        </ul>
+        <div className={CLASS_FONT_SEMIBOLD_MB4}>TIN TỨC</div>
+        <ul className={CLASS_SPACE_Y2_TEXT_SM}>
+          <li><a href="#" className={CLASS_HOVER}>Tin tức</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Khuyến mãi</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Tuyển dụng</a></li>
+          <li><a href="#" className={CLASS_HOVER}>Liên hệ</a></li>
+        </ul>
       </div>
     </div>
   )
