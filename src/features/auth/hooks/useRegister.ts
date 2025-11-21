@@ -30,6 +30,7 @@ export const useRegister = () => {
       setLoading(false);
     }
   };
+  const clearError = () => setError(null);
 
-  return { createUser, loading, error };
+  return { createUser, loading, error, clearError };
 };

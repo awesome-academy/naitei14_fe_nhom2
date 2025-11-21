@@ -1,6 +1,6 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { ArrowLeft } from "lucide-react";
+import { useForm, FieldErrors } from "react-hook-form";
+import { LuArrowLeft } from "react-icons/lu";
 import { ForgotPasswordFormData } from "../types/auth.types";
 import { useForgotPassword } from "../hooks/useForgotPassword";
 import { validateForgotPasswordForm } from "../utils/authValidation";
@@ -12,34 +12,35 @@ import {
   CLASS_FORM_INPUT,
   CLASS_FORM_ERROR,
   CLASS_FORM_SUCCESS_MESSAGE,
-  CLASS_FORM_ERROR_MESSAGE,
   CLASS_FORM_BUTTON_CONTAINER,
 } from "@/constants/common";
+
+const customForgotPasswordResolver = async (values: ForgotPasswordFormData) => {
+  const errors: FieldErrors<ForgotPasswordFormData> = {};
+  const validationErrors = await validateForgotPasswordForm(values);
+  Object.entries(validationErrors).forEach(([field, message]) => {
+    errors[field as keyof ForgotPasswordFormData] = { message, type: "manual" };
+  });
+  return {
+    values: Object.keys(errors).length === 0 ? values : {},
+    errors,
+  };
+};
 
 const ForgotPasswordForm: React.FC = () => {
   const { forgotPassword, loading, error, success } = useForgotPassword();
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm<ForgotPasswordFormData>({
+    resolver: customForgotPasswordResolver,
     defaultValues: {
       email: "",
     },
   });
 
   const onSubmit = async (data: ForgotPasswordFormData) => {
-    const validationErrors = await validateForgotPasswordForm(data);
-    const hasErrors = Object.keys(validationErrors).length > 0;
-
-    if (hasErrors) {
-      Object.entries(validationErrors).forEach(([field, message]) => {
-        setError(field as keyof ForgotPasswordFormData, { message });
-      });
-      return;
-    }
-
     await forgotPassword({
       email: data.email,
     });
@@ -83,7 +84,9 @@ const ForgotPasswordForm: React.FC = () => {
 
         {/* Error Message */}
         {error && (
-          <div className={CLASS_FORM_ERROR_MESSAGE}>{error}</div>
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+            {error}
+          </div>
         )}
 
         <div className={CLASS_FORM_BUTTON_CONTAINER}>
@@ -102,7 +105,7 @@ const ForgotPasswordForm: React.FC = () => {
             href="/auth/login"
             className="inline-flex items-center gap-1 text-sm text-green-primary hover:underline"
           >
-            <ArrowLeft size={16} />
+            <LuArrowLeft size={16} />
             Quay lại đăng nhập
           </a>
         </div>

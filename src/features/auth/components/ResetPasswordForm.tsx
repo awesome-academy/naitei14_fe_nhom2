@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, FieldErrors } from "react-hook-form";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
+import { LuEye, LuEyeOff } from "react-icons/lu";
 import { ResetPasswordFormData } from "../types/auth.types";
 import { useResetPassword } from "../hooks/useResetPassword";
 import { validateResetPasswordForm } from "../utils/authValidation";
@@ -13,9 +13,20 @@ import {
   CLASS_FORM_INPUT,
   CLASS_FORM_ERROR,
   CLASS_FORM_SUCCESS_MESSAGE,
-  CLASS_FORM_ERROR_MESSAGE,
   CLASS_FORM_PASSWORD_TOGGLE,
 } from "@/constants/common";
+
+const customResetPasswordResolver = async (values: ResetPasswordFormData) => {
+  const errors: FieldErrors<ResetPasswordFormData> = {};
+  const validationErrors = await validateResetPasswordForm(values);
+  Object.entries(validationErrors).forEach(([field, message]) => {
+    errors[field as keyof ResetPasswordFormData] = { message, type: "manual" };
+  });
+  return {
+    values: Object.keys(errors).length === 0 ? values : {},
+    errors,
+  };
+};
 
 const ResetPasswordForm: React.FC = () => {
   const navigate = useNavigate();
@@ -29,9 +40,9 @@ const ResetPasswordForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm<ResetPasswordFormData>({
+    resolver: customResetPasswordResolver,
     defaultValues: {
       newPassword: "",
       confirmPassword: "",
@@ -67,24 +78,9 @@ const ResetPasswordForm: React.FC = () => {
   }, [success, navigate]);
 
   const onSubmit = async (data: ResetPasswordFormData) => {
-    if (!userId || !token) {
-      setTokenError("Liên kết không hợp lệ. Vui lòng thử lại.");
-      return;
-    }
-
-    const validationErrors = await validateResetPasswordForm(data);
-    const hasErrors = Object.keys(validationErrors).length > 0;
-
-    if (hasErrors) {
-      Object.entries(validationErrors).forEach(([field, message]) => {
-        setError(field as keyof ResetPasswordFormData, { message });
-      });
-      return;
-    }
-
     await resetUserPassword({
-      userId,
-      token,
+      userId: userId!,
+      token: token!,
       newPassword: data.newPassword,
     });
   };
@@ -145,7 +141,7 @@ const ResetPasswordForm: React.FC = () => {
               onClick={() => setShowNewPassword(!showNewPassword)}
               className={CLASS_FORM_PASSWORD_TOGGLE}
             >
-              {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              {showNewPassword ? <LuEyeOff size={18} /> : <LuEye size={18} />}
             </button>
           </div>
           {errors.newPassword?.message && (
@@ -178,24 +174,22 @@ const ResetPasswordForm: React.FC = () => {
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               className={CLASS_FORM_PASSWORD_TOGGLE}
             >
-              {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              {showConfirmPassword ? <LuEyeOff size={18} /> : <LuEye size={18} />}
             </button>
           </div>
           {errors.confirmPassword?.message && (
-            <p className={CLASS_FORM_ERROR}>
-              {errors.confirmPassword.message}
-            </p>
+            <p className={CLASS_FORM_ERROR}>{errors.confirmPassword.message}</p>
           )}
         </div>
 
         {/* Success Message */}
-        {success && (
-          <div className={CLASS_FORM_SUCCESS_MESSAGE}>{success}</div>
-        )}
+        {success && <div className={CLASS_FORM_SUCCESS_MESSAGE}>{success}</div>}
 
         {/* Error Message */}
         {error && (
-          <div className={CLASS_FORM_ERROR_MESSAGE}>{error}</div>
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+            {error}
+          </div>
         )}
 
         {/* Submit Button */}

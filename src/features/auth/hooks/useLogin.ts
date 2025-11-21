@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authAPI";
 import { LoginError } from "../types/auth.types";
 import { useAuth } from "@/contexts/AuthContext";
+import { MESSAGE_LOGIN_FAILED } from "@/constants/common";
 
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -27,21 +28,17 @@ export const useLogin = () => {
       authLogin(userForStorage, credentials.rememberMe);
       navigate("/");
     } catch (err) {
-      let errorMessage = "Đăng nhập thất bại. Vui lòng thử lại.";
-
-      if (err instanceof LoginError) {
-        errorMessage = err.message;
-      } else if (err instanceof Error) {
-        errorMessage = err.message;
-      }
-
+      const errorMessage =
+        err instanceof Error ? err.message : MESSAGE_LOGIN_FAILED;
       setError(errorMessage);
-
-      console.error("Login error occurred", {
+      console.error("Registration error occurred", {
         message: errorMessage,
         error: err,
-        timestamp: new Date().toISOString(),
       });
+      throw new LoginError(
+        errorMessage,
+        err instanceof Error ? err : undefined
+      );
     } finally {
       setLoading(false);
     }

@@ -1,20 +1,32 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Eye, EyeOff } from "lucide-react";
+import { useForm, FieldErrors } from "react-hook-form";
+import { LuEye, LuEyeOff } from "react-icons/lu";
 import { LoginFormData } from "../types/auth.types";
 import { useLogin } from "../hooks/useLogin";
 import { validateLoginForm } from "../utils/authValidation";
 import { RenderButton } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
+const customLoginResolver = async (values: LoginFormData) => {
+  const errors: FieldErrors<LoginFormData> = {};
+  const validationErrors = await validateLoginForm(values);
+  Object.entries(validationErrors).forEach(([field, message]) => {
+    errors[field as keyof LoginFormData] = { message, type: "manual" };
+  });
+  return {
+    values: Object.keys(errors).length === 0 ? values : {},
+    errors,
+  };
+};
+
 const LoginForm: React.FC = () => {
   const { login, loading, error } = useLogin();
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm<LoginFormData>({
+    resolver: customLoginResolver,
     defaultValues: {
       email: "",
       password: "",
@@ -25,16 +37,6 @@ const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data: LoginFormData) => {
-    const validationErrors = await validateLoginForm(data);
-    const hasErrors = Object.keys(validationErrors).length > 0;
-
-    if (hasErrors) {
-      Object.entries(validationErrors).forEach(([field, message]) => {
-        setError(field as keyof LoginFormData, { message });
-      });
-      return;
-    }
-
     await login({
       email: data.email,
       password: data.password,
@@ -103,7 +105,7 @@ const LoginForm: React.FC = () => {
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-text"
                   aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
                 >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {showPassword ? <LuEyeOff size={20} /> : <LuEye size={20} />}
                 </button>
               </div>
               {errors.password?.message && (
@@ -164,9 +166,9 @@ const LoginForm: React.FC = () => {
             BẠN CHƯA CÓ TÀI KHOẢN?
           </h2>
           <p className="text-primary-text mb-6 leading-relaxed text-justify">
-            Đăng ký tài khoản ngay để có thể mua hàng nhanh chóng và dễ dàng hơn!
-            Ngoài ra còn có rất nhiều chính sách và ưu đãi cho các thành viên của
-            GreenShop.
+            Đăng ký tài khoản ngay để có thể mua hàng nhanh chóng và dễ dàng
+            hơn! Ngoài ra còn có rất nhiều chính sách và ưu đãi cho các thành
+            viên của GreenShop.
           </p>
           <a href="/auth/register">
             <RenderButton

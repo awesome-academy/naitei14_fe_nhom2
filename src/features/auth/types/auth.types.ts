@@ -1,3 +1,6 @@
+/**
+ * Data structure for the registration form inputs.
+ */
 export interface RegisterFormData {
   fullName: string;
   phone: string;
@@ -8,21 +11,33 @@ export interface RegisterFormData {
   subscribeEmail: boolean;
 }
 
+/**
+ * Data structure for the login form inputs.
+ */
 export interface LoginFormData {
   email: string;
   password: string;
   rememberMe: boolean;
 }
 
+/**
+ * Data structure for the forgot password form inputs.
+ */
 export interface ForgotPasswordFormData {
   email: string;
 }
 
+/**
+ * Data structure for the reset password form inputs.
+ */
 export interface ResetPasswordFormData {
   newPassword: string;
   confirmPassword: string;
 }
 
+/**
+ * Data structure for the Register request.
+ */
 export interface RegisterRequest {
   fullName: string;
   phone: string;
@@ -59,6 +74,9 @@ export class EmailError extends Error {
     this.name = "EmailError";
   }
 }
+/**
+ * Data structure for the user object.
+ */
 
 export class ForgotPasswordError extends Error {
   constructor(message: string, public originalError?: Error) {
@@ -74,6 +92,9 @@ export class ResetPasswordError extends Error {
   }
 }
 
+/**
+ * Data structure for the user object.
+ */
 export interface User {
   id: string;
   fullName: string;

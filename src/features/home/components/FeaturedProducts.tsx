@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Container } from '@/components/ui/Container'
-import { ProductCard } from '@/features/products/components/ProductCard'
-import { Product } from '@/features/products/types'
-import { getFeaturedProducts } from '@/features/products/apis'
+import { ProductCard } from '@/components/products/ProductCard'
+import { Product } from '@/types/product'
+import { getFeaturedProducts } from '@/apis/products'
 import {
   CLASS_SECTION_WHITE,
   CLASS_GRID_LARGE_CARD_FIRST,
@@ -12,12 +12,14 @@ import {
 export const FeaturedProducts = () => {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const data = await getFeaturedProducts()
         setProducts(data)
+        setError(null)
       } catch (error) {
         if (import.meta.env.DEV) {
           console.error('Error fetching products:', {
@@ -27,6 +29,7 @@ export const FeaturedProducts = () => {
             timestamp: new Date().toISOString(),
           })
         }
+        setError('Không thể tải sản phẩm. Vui lòng thử lại sau.')
       } finally {
         setLoading(false)
       }
@@ -39,7 +42,22 @@ export const FeaturedProducts = () => {
     return (
       <section className={CLASS_SECTION_WHITE}>
         <Container>
-          <div className="text-center">Loading...</div>
+          <div className="text-center" role="status" aria-live="polite">
+            <span className="sr-only">Đang tải sản phẩm...</span>
+            Loading...
+          </div>
+        </Container>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className={CLASS_SECTION_WHITE}>
+        <Container>
+          <div className="text-center text-red-500" role="alert">
+            {error}
+          </div>
         </Container>
       </section>
     )

@@ -1,20 +1,38 @@
 {
   "users": [
     {
-      "id": "f2c47316-5d45-4a38-9a9d-60cdeb536568",
+      "id": "a3a4bfa1-c4ee-4578-9a9b-d61d09b35e9f",
       "fullName": "Trần Văn A",
       "phone": "09082151825",
-      "email": "haudreywilliam13@gmail.com",
-      "password": "Hoc123456",
+      "email": "tranvana@gmail.com",
+      "password": "Hoc12345",
       "website": "",
-      "subscribeEmail": true,
+      "subscribeEmail": false
+    },
+    {
+      "id": "29804081-4511-4643-b193-4ad45856c97f",
+      "fullName": "Trần Văn A",
+      "phone": "09082151825",
+      "email": "tranvana131@gmail.com",
+      "password": "Hoc12345",
+      "website": "",
+      "subscribeEmail": false
+    },
+    {
+      "id": "8124b991-ef3a-454e-aa37-667024080145",
+      "fullName": "Đỗ Quân",
+      "phone": "0779562271",
+      "email": "haudreywilliam13@gmail.com",
+      "password": "asdasd123",
+      "website": "",
+      "subscribeEmail": false,
       "emailVerified": true,
       "activationToken": null,
-      "createdAt": "2025-11-14T10:08:16.256Z",
-      "activatedAt": "2025-11-14T10:08:36.653Z",
+      "createdAt": "2025-11-21T03:20:58.439Z",
+      "activatedAt": "2025-11-21T03:21:14.829Z",
       "resetToken": null,
       "resetTokenExpiry": null,
-      "passwordResetAt": "2025-11-18T02:46:16.790Z"
+      "passwordResetAt": "2025-11-21T09:40:51.704Z"
     }
   ]
 }
