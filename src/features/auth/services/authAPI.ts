@@ -178,3 +178,16 @@ export const activateUserEmail = async (
 
   return updateResponse.json();
 };
+
+export const checkEmailExists = async (email: string): Promise<boolean> => {
+  const response = await fetch(
+    `${API_BASE_URL}/users?email=${encodeURIComponent(email)}&_limit=1`
+  );
+
+  if (!response.ok) {
+    throw new Error("Email check failed");
+  }
+
+  const users = await response.json();
+  return users.length > 0;
+};

@@ -3,7 +3,8 @@ import { EmailJSResponseStatus } from "@emailjs/browser";
 import { EmailError } from "../types/auth.types";
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_ACTIVATION_TEMPLATE_ID = import.meta.env
+  .VITE_EMAILJS_ACTIVATION_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 interface EmailTemplateParams {
@@ -19,11 +20,15 @@ export const sendActivationEmail = async (
   activationLink: string
 ): Promise<void> => {
   // Kiểm tra config
-  if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+  if (
+    !EMAILJS_SERVICE_ID ||
+    !EMAILJS_ACTIVATION_TEMPLATE_ID ||
+    !EMAILJS_PUBLIC_KEY
+  ) {
     console.warn({
       message: "EmailJS not configured, skipping email send",
       hasServiceId: !!EMAILJS_SERVICE_ID,
-      hasTemplateId: !!EMAILJS_TEMPLATE_ID,
+      hasTemplateId: !!EMAILJS_ACTIVATION_TEMPLATE_ID,
       hasPublicKey: !!EMAILJS_PUBLIC_KEY,
       timestamp: new Date().toISOString(),
     });
@@ -40,7 +45,7 @@ export const sendActivationEmail = async (
   try {
     await emailjs.send(
       EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
+      EMAILJS_ACTIVATION_TEMPLATE_ID,
       templateParams as any,
       {
         publicKey: EMAILJS_PUBLIC_KEY,

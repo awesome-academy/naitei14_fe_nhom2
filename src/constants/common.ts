@@ -21,6 +21,8 @@ export const PRICE_1000000 = 1000000;
 // Common messages
 export const MESSAGE_DEVELOPING = "Chức năng đang phát triển" as const;
 export const MESSAGE_REGISTER_FAILED = "Đăng ký thất bại" as const;
+export const MESSAGE_LOGIN_FAILED =
+  "Đăng nhập thất bại. Vui lòng thử lại." as const;
 export const ACTIVATION_INVALID_LINK = "Link kích hoạt không hợp lệ" as const;
 export const ACTIVATION_SUCCESS =
   "Tài khoản đã được kích hoạt thành công!" as const;
@@ -43,6 +45,35 @@ export const VALIDATION_CONFIRM_PASSWORD_REQUIRED =
   "Xác nhận mật khẩu là bắt buộc.";
 export const VALIDATION_PASSWORD_MISMATCH = "Mật khẩu không khớp!";
 
+// Register form class names
+export const CLASS_SECTION_HEADING =
+  "text-xl font-bold text-green-primary mb-6";
+export const CLASS_GRID_TWO_COL = "grid grid-cols-1 md:grid-cols-2 gap-6";
+export const CLASS_LABEL = "block text-sm mb-2";
+export const CLASS_INPUT_BASE =
+  "w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-green-dark";
+export const CLASS_PASSWORD_INPUT =
+  "w-full px-4 py-2 pr-12 border border-gray-300 rounded focus:outline-none focus:border-green-dark";
+export const CLASS_TOGGLE_BUTTON =
+  "absolute right-2 top-1/2 transform -translate-y-1/2 text-green-primary hover:text-green-dark";
+export const CLASS_ERROR = "text-red-500 text-sm mt-1";
+
+// Newsletter error messages
+export const ERROR_EMAIL_ALREADY_EXISTS =
+  "Email này đã được đăng ký. Vui lòng sử dụng email khác." as const;
+export const ERROR_NETWORK_CONNECTION =
+  "Lỗi kết nối mạng. Vui lòng kiểm tra kết nối và thử lại." as const;
+export const ERROR_SERVER = "Lỗi máy chủ. Vui lòng thử lại sau." as const;
+export const ERROR_GENERIC = "Đã có lỗi xảy ra. Vui lòng thử lại sau." as const;
+
+// Error keywords for error detection
+export const ERROR_KEYWORD_DUPLICATE = "duplicate" as const;
+export const ERROR_KEYWORD_ALREADY_EXISTS = "already exists" as const;
+export const ERROR_KEYWORD_NETWORK = "network" as const;
+export const ERROR_KEYWORD_FETCH = "fetch" as const;
+export const ERROR_KEYWORD_SERVER = "server" as const;
+export const ERROR_KEYWORD_500 = "500" as const;
+
 // Common class names
 export const CLASS_HOVER = "hover:text-green-primary transition-colors";
 export const CLASS_DISABLED = "cursor-not-allowed opacity-75";
@@ -59,32 +90,18 @@ export const CLASS_TEXT_SM_GRAY = "text-sm text-gray-400 mb-2";
 export const CLASS_FONT_SEMIBOLD_MB4 = "font-semibold mb-4";
 export const CLASS_SPACE_Y2_TEXT_SM = "space-y-2 text-sm text-gray-400";
 
-// Register form class names
-export const CLASS_SECTION_HEADING =
-  "text-xl font-bold text-green-primary mb-6";
-export const CLASS_GRID_TWO_COL = "grid grid-cols-1 md:grid-cols-2 gap-6";
-export const CLASS_LABEL = "block text-sm mb-2";
-export const CLASS_INPUT_BASE =
-  "w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-green-dark";
-export const CLASS_PASSWORD_INPUT =
-  "w-full px-4 py-2 pr-12 border border-gray-300 rounded focus:outline-none focus:border-green-dark";
-export const CLASS_TOGGLE_BUTTON =
-  "absolute right-2 top-1/2 transform -translate-y-1/2 text-green-primary hover:text-green-dark";
-export const CLASS_ERROR = "text-red-500 text-sm mt-1";
-
 // Grid layout classes
 export const CLASS_GRID_LARGE_CARD_FIRST =
   "sm:col-span-2 lg:col-span-2 lg:row-span-2";
 export const CLASS_GRID_LARGE_CARD_SECOND =
   "sm:col-span-2 lg:col-start-3 lg:col-span-2 lg:row-start-2 lg:row-span-2";
 
+export const API_BASE_URL = `http://localhost:${
+  import.meta.env.VITE_API_PORT || 3001
+}`;
+
 // Slider configuration
 const DEFAULT_AUTO_SLIDE_INTERVAL_MS = 5 * 1000;
 export const AUTO_SLIDE_INTERVAL_MS = Number(
   import.meta.env.VITE_AUTO_SLIDE_INTERVAL_MS || DEFAULT_AUTO_SLIDE_INTERVAL_MS
 );
-
-// API endpoints
-export const API_BASE_URL = `http://localhost:${
-  import.meta.env.VITE_API_BASE_URL || 3001
-}`;
