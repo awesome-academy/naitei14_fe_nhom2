@@ -41,10 +41,15 @@ export const useResetPassword = () => {
     }
   };
 
+  const clearError = () => {
+    setError(null);
+  };
+
   return {
     resetPassword,
     loading,
     error,
     success,
+    clearError,
   };
 };

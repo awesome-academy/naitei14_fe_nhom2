@@ -29,10 +29,15 @@ export const useForgotPassword = () => {
     }
   };
 
+  const clearError = () => {
+    setError(null);
+  };
+
   return {
     forgotPassword,
     loading,
     error,
     success,
+    clearError,
   };
 };
