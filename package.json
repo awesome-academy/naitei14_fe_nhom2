@@ -7,15 +7,19 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "sunlint --all --input=src",
+    "server": "json-server --watch server/db.json --port 3001 --routes server/routes.json",
     "lint:changed": "sunlint --all --changed-files",
     "lint:security": "sunlint --security --input=src",
     "preview": "vite preview"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^5.2.2",
     "clsx": "^2.1.1",
+    "json-server": "^0.17.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.66.1",
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.26.0",
     "tailwind-merge": "^3.3.1"

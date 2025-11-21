@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": "04c695fe-016d-44f5-8e60-61db424e7f84",
+      "fullName": "Trần Văn A",
+      "phone": "09082151825",
+      "email": "tranvana@gmail.com",
+      "password": "Hoc12345",
+      "website": "",
+      "subscribeEmail": false
+    },
+    {
+      "id": "a3a4bfa1-c4ee-4578-9a9b-d61d09b35e9f",
+      "fullName": "Trần Văn A",
+      "phone": "09082151825",
+      "email": "tranvana@gmail.com",
+      "password": "Hoc12345",
+      "website": "",
+      "subscribeEmail": false
+    },
+    {
+      "id": "29804081-4511-4643-b193-4ad45856c97f",
+      "fullName": "Trần Văn A",
+      "phone": "09082151825",
+      "email": "tranvana131@gmail.com",
+      "password": "Hoc12345",
+      "website": "",
+      "subscribeEmail": false
+    }
+  ]
+}

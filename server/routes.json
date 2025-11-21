@@ -1,0 +1,3 @@
+{
+  "/users/check-email?email=:email": "/users?email=:email&_limit=1"
+}
