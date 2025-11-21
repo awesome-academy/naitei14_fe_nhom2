@@ -1,8 +1,24 @@
-import { Container } from '@/components/ui/Container'
-import { MESSAGE_DEVELOPING, CLASS_DISABLED, CLASS_FLEX_CENTER_GAP4, CLASS_HOVER, CLASS_SVG_ICON_SM } from '@/constants/common'
-import { FaFacebook, FaTwitter, FaPinterest, FaInstagram } from 'react-icons/fa'
+import { Container } from "@/components/ui/Container";
+import {
+  MESSAGE_DEVELOPING,
+  CLASS_DISABLED,
+  CLASS_FLEX_CENTER_GAP4,
+  CLASS_HOVER,
+  CLASS_SVG_ICON_SM,
+} from "@/constants/common";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaPinterest,
+  FaInstagram,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { LuLogIn, LuUserPlus, LuLogOut } from "react-icons/lu";
+import { useAuth } from "@/contexts/AuthContext";
 
 export const RenderTopHeader = () => {
+  const { isLoggedIn, user, logout } = useAuth();
+
   return (
     <div className="bg-gray-dark text-white py-2 text-sm">
       <Container>
@@ -25,16 +41,38 @@ export const RenderTopHeader = () => {
             </div>
           </div>
           <div className={CLASS_FLEX_CENTER_GAP4}>
-            <span className={CLASS_DISABLED} title={MESSAGE_DEVELOPING}>
-              Đăng nhập
-            </span>
-            <span className={CLASS_DISABLED} title={MESSAGE_DEVELOPING}>
-              Đăng ký
-            </span>
+            {isLoggedIn ? (
+              <>
+                <span>Welcome, {user?.fullName}!</span>
+                <button
+                  onClick={logout}
+                  className="flex items-center gap-1 hover:text-gray-300"
+                >
+                  <LuLogOut size={16} />
+                  Đăng xuất
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="auth/login"
+                  className="flex items-center gap-1 hover:text-gray-300"
+                >
+                  <LuLogIn size={16} />
+                  Đăng nhập
+                </Link>
+                <Link
+                  to="auth/register"
+                  className="flex items-center gap-1 hover:text-gray-300"
+                >
+                  <LuUserPlus size={16} />
+                  Đăng ký
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </Container>
     </div>
-  )
-}
-
+  );
+};
