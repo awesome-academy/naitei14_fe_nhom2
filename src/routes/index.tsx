@@ -1,6 +1,7 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import { MainLayout } from '@/components/layout/MainLayout'
 import { RenderHome } from '@/features/home'
+import { RegisterPage, ActivatePage } from '@/features/auth'
 
 const LayoutWrapper = () => {
   return (
@@ -17,6 +18,14 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <RenderHome />,
+      },
+      {
+        path: 'auth/register',
+        element: <RegisterPage />,
+      },
+      {
+        path: 'auth/activate',
+        element: <ActivatePage />,
       },
     ],
   },

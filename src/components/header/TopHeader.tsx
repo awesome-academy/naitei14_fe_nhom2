@@ -1,6 +1,7 @@
 import { Container } from '@/components/ui/Container'
 import { MESSAGE_DEVELOPING, CLASS_DISABLED, CLASS_FLEX_CENTER_GAP4, CLASS_HOVER, CLASS_SVG_ICON_SM } from '@/constants/common'
 import { FaFacebook, FaTwitter, FaPinterest, FaInstagram } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 export const RenderTopHeader = () => {
   return (
@@ -28,9 +29,9 @@ export const RenderTopHeader = () => {
             <span className={CLASS_DISABLED} title={MESSAGE_DEVELOPING}>
               Đăng nhập
             </span>
-            <span className={CLASS_DISABLED} title={MESSAGE_DEVELOPING}>
+            <Link to="auth/register">
               Đăng ký
-            </span>
+            </Link>
           </div>
         </div>
       </Container>
