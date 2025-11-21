@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { Product } from '@/types/product'
 import {
@@ -27,13 +28,17 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product, isLarge = false, variant = 'default' }: ProductCardProps) => {
+  const navigate = useNavigate()
   const [isHovered, setIsHovered] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
   const isHomeVariant = variant === 'home'
 
   const handleBuyNow = () => {
-    // TODO: Navigate to product detail page or add to cart
-    // Implementation pending
+    navigate(`/products/${product.id}`)
+  }
+
+  const handleProductClick = () => {
+    navigate(`/products/${product.id}`)
   }
 
   const handleQuickView = () => {
@@ -108,7 +113,10 @@ export const ProductCard = ({ product, isLarge = false, variant = 'default' }: P
       </div>
 
       <div className="text-center w-full">
-        <h3 className="text-base font-semibold text-gray-800 mb-2 line-clamp-2 min-h-[2.5rem]">
+        <h3
+          className="text-base font-semibold text-gray-800 mb-2 line-clamp-2 min-h-[2.5rem] cursor-pointer hover:text-green-primary transition-colors"
+          onClick={handleProductClick}
+        >
           {product.name}
         </h3>
 
