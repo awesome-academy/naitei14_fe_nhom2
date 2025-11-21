@@ -85,7 +85,7 @@ export const FeaturedProducts = () => {
             
             return (
               <div key={product.id} className={gridClasses}>
-                <ProductCard product={product} isLarge={isLargeCard} />
+                <ProductCard product={product} isLarge={isLargeCard} variant="home" />
               </div>
             )
           })}
