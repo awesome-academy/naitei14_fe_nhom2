@@ -1,37 +1,19 @@
 {
   "users": [
     {
-      "id": "04c695fe-016d-44f5-8e60-61db424e7f84",
-      "fullName": "Trần Văn A",
-      "phone": "09082151825",
-      "email": "tranvana@gmail.com",
-      "password": "Hoc12345",
-      "website": "",
-      "subscribeEmail": false
-    },
-    {
-      "id": "a3a4bfa1-c4ee-4578-9a9b-d61d09b35e9f",
-      "fullName": "Trần Văn A",
-      "phone": "09082151825",
-      "email": "tranvana@gmail.com",
-      "password": "Hoc12345",
-      "website": "",
-      "subscribeEmail": false
-    },
-    {
       "id": "8124b991-ef3a-454e-aa37-667024080145",
       "fullName": "Đỗ Quân",
       "phone": "0779562271",
       "email": "haudreywilliam13@gmail.com",
-      "password": "$2b$10$SFXxOm1gFn15uI1/88kU1ePX7GtGH3tvPa/zN51TzvaIgHVfe1yZ.",
+      "password": "$2b$10$y35NavZcZoruDA5yV0bDe.mgIsxnE6v60p5RKQXZskM8hmcEzeJtW",
       "website": "",
       "subscribeEmail": false,
       "emailVerified": true,
       "activationToken": null,
       "role": "admin",
       "createdAt": "2025-11-26T03:39:07.815Z",
-      "activatedAt": "2025-12-09T08:45:44.643Z",
-      "passwordChangedAt": "2025-12-09T08:46:43.140Z"
+      "activatedAt": "2025-11-26T03:39:29.711Z",
+      "passwordChangedAt": "2025-12-11T08:47:32.280Z"
     },
     {
       "id": "3291033d-3ea6-4087-9ad5-13eeb657da42",
@@ -44,7 +26,8 @@
       "emailVerified": false,
       "role": "user",
       "activationToken": "033a2fd4-4c76-48d6-acd7-8cf8bac8257a",
-      "createdAt": "2025-11-28T02:55:29.640Z"
+      "createdAt": "2025-11-28T02:55:29.640Z",
+      "active": false
     },
     {
       "id": "67d683dc-f9b6-45d6-975e-d170dd27f92e",
@@ -84,6 +67,19 @@
       "activationToken": "c9604376-5a1c-40d9-a6e3-b2f173d101c0",
       "role": "user",
       "createdAt": "2025-12-10T01:02:43.025Z"
+    },
+    {
+      "id": "b10cb0b2-2a78-48a3-8ebc-a7918980d6fc",
+      "fullName": "Phương Hà Lê Duy",
+      "phone": "0899078231",
+      "email": "phuonghaleduy@gmail.com",
+      "password": "$2b$10$1UBAGlDXcqCIds84O6G42eplH/dJeyV.fXjAxY7JoNZYfAQE.foke",
+      "website": "",
+      "subscribeEmail": false,
+      "emailVerified": true,
+      "activationToken": null,
+      "role": "user",
+      "createdAt": "2025-12-10T09:31:24.164Z"
     }
   ],
   "products": [
@@ -100,12 +96,7 @@
       "color": "green",
       "shortDescription": "Cây chân chim là loại cây cảnh phổ biến, dễ chăm sóc, thích hợp để trang trí trong nhà và văn phòng.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây chân chim, Ngũ gia bì</p><p><strong>Tên khoa học:</strong> Schefflera arboricola</p><p><strong>Họ thực vật:</strong> Araliaceae (Họ Nhân sâm)</p><p><strong>Chiều cao:</strong> 0,5-1,5m</p><p>Cây chân chim có nguồn gốc từ Đài Loan và miền nam Trung Quốc, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải. Lá cây có hình dạng đặc trưng như bàn tay với 5-8 lá chét, màu xanh đậm bóng.</p><p>Cây dễ chăm sóc, không cần tưới nước quá nhiều, phù hợp cho người mới bắt đầu trồng cây cảnh. Cây có khả năng thanh lọc không khí tốt, giúp loại bỏ các chất độc hại trong môi trường sống.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh trong nhà",
-        "Dễ chăm sóc"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh trong nhà", "Dễ chăm sóc"]
     },
     {
       "id": 2,
@@ -141,12 +132,7 @@
       "color": "green",
       "shortDescription": "Cây Danh Dự với vẻ đẹp sang trọng, phù hợp để làm quà tặng hoặc trang trí phòng khách.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây Danh Dự, Cây Huyết dụ</p><p><strong>Tên khoa học:</strong> Cordyline fruticosa</p><p><strong>Họ thực vật:</strong> Asparagaceae (Họ Măng tây)</p><p><strong>Chiều cao:</strong> 1-2m</p><p>Cây Danh Dự có nguồn gốc từ Đông Nam Á và các đảo Thái Bình Dương. Cây có lá dài, màu xanh đậm hoặc đỏ tía, tạo vẻ đẹp sang trọng và quý phái. Cây thường được trồng làm cảnh trong nhà hoặc ngoài trời.</p><p>Cây ưa ánh sáng gián tiếp, cần đất ẩm nhưng không được úng nước. Cây phát triển chậm, phù hợp để trang trí phòng khách, phòng làm việc hoặc làm quà tặng trong các dịp đặc biệt.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh cao cấp",
-        "Quà tặng"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh cao cấp", "Quà tặng"]
     },
     {
       "id": 4,
@@ -161,11 +147,7 @@
       "color": "green",
       "shortDescription": "Cây cọ ta nhỏ gọn, dễ trồng, thích hợp cho không gian nhỏ như bàn làm việc.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây cọ ta</p><p><strong>Tên khoa học:</strong> Cây cọ ta</p><p><strong>Họ thực vật:</strong> Cây cảnh mini</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây cọ ta nhỏ gọn, dễ trồng, thích hợp cho không gian nhỏ như bàn làm việc.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh mini"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh mini"]
     },
     {
       "id": 5,
@@ -180,11 +162,7 @@
       "color": "green",
       "shortDescription": "Cây dứa nhỏ với hình dáng độc đáo, mang lại không khí tươi mát cho căn phòng.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây dứa nhỏ</p><p><strong>Tên khoa học:</strong> Cây dứa nhỏ</p><p><strong>Họ thực vật:</strong> Cây cảnh trong nhà</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây dứa nhỏ với hình dáng độc đáo, mang lại không khí tươi mát cho căn phòng.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh trong nhà"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh trong nhà"]
     },
     {
       "id": 6,
@@ -200,11 +178,7 @@
       "color": "orange",
       "shortDescription": "Cây đa búp đỏ với lá màu đỏ đặc trưng, tạo điểm nhấn cho không gian sống.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây đa búp đỏ</p><p><strong>Tên khoa học:</strong> Cây đa búp đỏ</p><p><strong>Họ thực vật:</strong> Cây cảnh trong nhà</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây đa búp đỏ với lá màu đỏ đặc trưng, tạo điểm nhấn cho không gian sống.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh trong nhà"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh trong nhà"]
     },
     {
       "id": 7,
@@ -218,11 +192,7 @@
       "color": "green",
       "shortDescription": "Cây trầu bà dễ sống, thanh lọc không khí tốt, phù hợp cho người mới bắt đầu trồng cây.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây trầu bà</p><p><strong>Tên khoa học:</strong> Cây trầu bà</p><p><strong>Họ thực vật:</strong> Cây cảnh trong nhà</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây trầu bà dễ sống, thanh lọc không khí tốt, phù hợp cho người mới bắt đầu trồng cây.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh trong nhà"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh trong nhà"]
     },
     {
       "id": 8,
@@ -237,11 +207,7 @@
       "color": "green",
       "shortDescription": "Cây lưỡi hổ có khả năng lọc không khí tốt, thích hợp đặt trong phòng ngủ.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây lưỡi hổ</p><p><strong>Tên khoa học:</strong> Cây lưỡi hổ</p><p><strong>Họ thực vật:</strong> Cây cảnh trong nhà</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây lưỡi hổ có khả năng lọc không khí tốt, thích hợp đặt trong phòng ngủ.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh trong nhà"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh trong nhà"]
     },
     {
       "id": 9,
@@ -255,11 +221,7 @@
       "color": "green",
       "shortDescription": "Cây kim tiền mang ý nghĩa phong thủy tốt, được nhiều người yêu thích.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây kim tiền</p><p><strong>Tên khoa học:</strong> Cây kim tiền</p><p><strong>Họ thực vật:</strong> Cây cảnh phong thủy</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây kim tiền mang ý nghĩa phong thủy tốt, được nhiều người yêu thích.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh phong thủy"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh phong thủy"]
     },
     {
       "id": 10,
@@ -273,11 +235,7 @@
       "color": "green",
       "shortDescription": "Cây phát tài với ý nghĩa may mắn, tài lộc, thường được đặt ở phòng khách.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây phát tài</p><p><strong>Tên khoa học:</strong> Cây phát tài</p><p><strong>Họ thực vật:</strong> Cây cảnh phong thủy</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây phát tài với ý nghĩa may mắn, tài lộc, thường được đặt ở phòng khách.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh phong thủy"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh phong thủy"]
     },
     {
       "id": 11,
@@ -291,11 +249,7 @@
       "color": "green",
       "shortDescription": "Cây vạn niên thanh có lá xanh mướt, dễ chăm sóc, thích hợp cho người bận rộn.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây vạn niên thanh</p><p><strong>Tên khoa học:</strong> Cây vạn niên thanh</p><p><strong>Họ thực vật:</strong> Cây cảnh trong nhà</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây vạn niên thanh có lá xanh mướt, dễ chăm sóc, thích hợp cho người bận rộn.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh trong nhà"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh trong nhà"]
     },
     {
       "id": 12,
@@ -310,11 +264,7 @@
       "color": "purple",
       "shortDescription": "Cây đuôi công với lá có hoa văn đẹp mắt, tạo điểm nhấn cho không gian.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây đuôi công</p><p><strong>Tên khoa học:</strong> Cây đuôi công</p><p><strong>Họ thực vật:</strong> Cây cảnh cao cấp</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây đuôi công với lá có hoa văn đẹp mắt, tạo điểm nhấn cho không gian.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh cao cấp"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh cao cấp"]
     },
     {
       "id": 13,
@@ -328,11 +278,7 @@
       "color": "green",
       "shortDescription": "Cây sen đá nhỏ xinh, dễ chăm sóc, thích hợp để bàn làm việc hoặc cửa sổ.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây sen đá</p><p><strong>Tên khoa học:</strong> Cây sen đá</p><p><strong>Họ thực vật:</strong> Cây cảnh mini</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây sen đá nhỏ xinh, dễ chăm sóc, thích hợp để bàn làm việc hoặc cửa sổ.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh mini"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh mini"]
     },
     {
       "id": 14,
@@ -346,11 +292,7 @@
       "color": "green",
       "shortDescription": "Cây xương rồng cứng cáp, không cần tưới nhiều, phù hợp cho người hay quên.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây xương rồng</p><p><strong>Tên khoa học:</strong> Cây xương rồng</p><p><strong>Họ thực vật:</strong> Cây cảnh mini</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây xương rồng cứng cáp, không cần tưới nhiều, phù hợp cho người hay quên.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh mini"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh mini"]
     },
     {
       "id": 15,
@@ -364,11 +306,7 @@
       "color": "green",
       "shortDescription": "Cây lan ý có hoa trắng đẹp, thanh lọc không khí tốt, thích hợp đặt trong nhà.",
       "fullDescription": "<p><strong>Tên phổ thông:</strong> Cây lan ý</p><p><strong>Tên khoa học:</strong> Cây lan ý</p><p><strong>Họ thực vật:</strong> Cây cảnh trong nhà</p><p><strong>Chiều cao:</strong> 0,8-1,2m</p><p>Cây lan ý có hoa trắng đẹp, thanh lọc không khí tốt, thích hợp đặt trong nhà.</p><p>Cây có nguồn gốc từ nhiều nơi trên thế giới, được du nhập và phân bố rộng khắp ở Việt Nam. Cây phát triển tốt trong môi trường trong nhà, thích hợp với ánh sáng gián tiếp và độ ẩm vừa phải.</p>",
-      "tags": [
-        "Cây cảnh",
-        "Trang trí",
-        "Cây cảnh trong nhà"
-      ]
+      "tags": ["Cây cảnh", "Trang trí", "Cây cảnh trong nhà"]
     }
   ],
   "orders": [
@@ -548,7 +486,7 @@
         "note": ""
       },
       "paymentMethod": "cod",
-      "status": "pending",
+      "status": "shipping",
       "createdAt": "2025-12-10T03:21:16.574Z",
       "id": "tEg_4UE"
     },
@@ -578,7 +516,78 @@
       "id": "me82Fn1"
     },
     {
-      "userId": "67d683dc-f9b6-45d6-975e-d170dd27f92e",
+      "userId": "8124b991-ef3a-454e-aa37-667024080145",
+      "items": [
+        {
+          "productId": 1,
+          "productName": "Cây chân chim",
+          "productImage": "/images/products/spx2-1.png",
+          "quantity": 3,
+          "price": 250000
+        }
+      ],
+      "totalAmount": 825000,
+      "shippingInfo": {
+        "fullName": "Đỗ Quân",
+        "email": "haudreywilliam13@gmail.com",
+        "phone": "0779562271",
+        "address": "K85/10 Nguyen Luong Bang",
+        "city": "Thành phố Đà Nẵng",
+        "note": ""
+      },
+      "paymentMethod": "cod",
+      "status": "confirmed",
+      "createdAt": "2025-12-11T07:49:01.501Z",
+      "id": "wNXGzEB"
+    },
+    {
+      "userId": "8124b991-ef3a-454e-aa37-667024080145",
+      "items": [
+        {
+          "productId": 3,
+          "productName": "Cây Danh Dự",
+          "productImage": "/images/products/spx2-3.png",
+          "quantity": 1,
+          "price": 850000
+        },
+        {
+          "productId": 8,
+          "productName": "Cây lưỡi hổ",
+          "productImage": "/images/products/spx2-8.png",
+          "quantity": 1,
+          "price": 300000
+        },
+        {
+          "productId": 5,
+          "productName": "Cây dứa nhỏ",
+          "productImage": "/images/products/spx2-5.png",
+          "quantity": 1,
+          "price": 375000
+        },
+        {
+          "productId": 2,
+          "productName": "Cây Dạ Lam",
+          "productImage": "/images/products/spx2-2.png",
+          "quantity": 2,
+          "price": 500000
+        }
+      ],
+      "totalAmount": 2777500,
+      "shippingInfo": {
+        "fullName": "Đỗ Quân",
+        "email": "haudreywilliam13@gmail.com",
+        "phone": "0779562271",
+        "address": "K85/10 Nguyen Luong Bang",
+        "city": "Thành phố Đà Nẵng",
+        "note": ""
+      },
+      "paymentMethod": "cod",
+      "status": "confirmed",
+      "createdAt": "2025-12-11T08:20:07.514Z",
+      "id": "hysXQa7"
+    },
+    {
+      "userId": "8124b991-ef3a-454e-aa37-667024080145",
       "items": [
         {
           "productId": 1,
@@ -588,36 +597,29 @@
           "price": 250000
         },
         {
-          "productId": 3,
-          "productName": "Cây Danh Dự",
-          "productImage": "/images/products/spx2-3.png",
+          "productId": 6,
+          "productName": "Cây đa búp đỏ",
+          "productImage": "/images/products/spx2-6.png",
           "quantity": 2,
-          "price": 850000
-        },
-        {
-          "productId": 7,
-          "productName": "Cây trầu bà",
-          "productImage": "/images/products/spx2-7.png",
-          "quantity": 1,
-          "price": 200000
+          "price": 500000
         }
       ],
-      "totalAmount": 2365000,
+      "totalAmount": 1375000,
       "shippingInfo": {
-        "fullName": "William Haudrey",
-        "email": "tranquoc1301@gmail.com",
-        "phone": "0779562272",
+        "fullName": "Đỗ Quân",
+        "email": "haudreywilliam13@gmail.com",
+        "phone": "0779562271",
         "address": "K85/10 Nguyen Luong Bang",
-        "city": "Da nang",
+        "city": "Thành phố Đà Nẵng",
         "note": ""
       },
       "paymentMethod": "cod",
-      "status": "pending",
-      "createdAt": "2025-12-10T05:13:13.271Z",
-      "id": "mx1ymia"
+      "status": "cancelled",
+      "createdAt": "2025-12-11T08:25:00.666Z",
+      "id": "ZZtNdoV"
     },
     {
-      "userId": "01064237-c8a8-4091-a87e-309c806a2020",
+      "userId": "67d683dc-f9b6-45d6-975e-d170dd27f92e",
       "items": [
         {
           "productId": 1,
@@ -684,12 +686,7 @@
       "shortDescription": "Umbrella tree is a popular ornamental plant, easy to care for, suitable for decorating homes and offices.",
       "fullDescription": "<p><strong>Common Name:</strong> Umbrella Tree, Schefflera</p><p><strong>Scientific Name:</strong> Schefflera arboricola</p><p><strong>Plant Family:</strong> Araliaceae (Ginseng family)</p><p><strong>Height:</strong> 0.5-1.5m</p><p>The umbrella tree originates from Taiwan and southern China, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity. The leaves have a characteristic hand-like shape with 5-8 leaflets, dark glossy green color.</p><p>The plant is easy to care for, does not require too much watering, suitable for beginners in ornamental plants. The plant has good air purification ability, helping to remove harmful substances in the living environment.</p>",
       "category": "Indoor Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Indoor Plants",
-        "Easy Care"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Indoor Plants", "Easy Care"]
     },
     {
       "id": 2,
@@ -716,12 +713,7 @@
       "shortDescription": "Ti plant with elegant beauty, suitable as a gift or for decorating the living room.",
       "fullDescription": "<p><strong>Common Name:</strong> Ti Plant, Cordyline</p><p><strong>Scientific Name:</strong> Cordyline fruticosa</p><p><strong>Plant Family:</strong> Asparagaceae (Asparagus family)</p><p><strong>Height:</strong> 1-2m</p><p>The Ti plant originates from Southeast Asia and Pacific islands. The plant has long leaves, dark green or purple-red color, creating elegant and noble beauty. The plant is often grown as indoor or outdoor ornamental.</p><p>The plant prefers indirect light, needs moist soil but not waterlogged. The plant grows slowly, suitable for decorating living rooms, work rooms or as gifts on special occasions.</p>",
       "category": "Premium Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Premium Plants",
-        "Gift"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Premium Plants", "Gift"]
     },
     {
       "id": 4,
@@ -732,11 +724,7 @@
       "shortDescription": "Dwarf palm is compact, easy to grow, suitable for small spaces like work desks.",
       "fullDescription": "<p><strong>Common Name:</strong> Dwarf Palm</p><p><strong>Scientific Name:</strong> Dwarf Palm</p><p><strong>Plant Family:</strong> Mini Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Dwarf palm is compact, easy to grow, suitable for small spaces like work desks.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Mini Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Mini Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Mini Plants"]
     },
     {
       "id": 5,
@@ -747,11 +735,7 @@
       "shortDescription": "Mini pineapple plant with unique shape, bringing fresh air to the room.",
       "fullDescription": "<p><strong>Common Name:</strong> Mini Pineapple Plant</p><p><strong>Scientific Name:</strong> Mini Pineapple Plant</p><p><strong>Plant Family:</strong> Indoor Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Mini pineapple plant with unique shape, bringing fresh air to the room.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Indoor Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Indoor Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Indoor Plants"]
     },
     {
       "id": 6,
@@ -762,11 +746,7 @@
       "shortDescription": "Red rubber tree with characteristic red leaves, creating an accent for the living space.",
       "fullDescription": "<p><strong>Common Name:</strong> Red Rubber Tree</p><p><strong>Scientific Name:</strong> Red Rubber Tree</p><p><strong>Plant Family:</strong> Indoor Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Red rubber tree with characteristic red leaves, creating an accent for the living space.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Indoor Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Indoor Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Indoor Plants"]
     },
     {
       "id": 7,
@@ -777,11 +757,7 @@
       "shortDescription": "Golden pothos is easy to grow, has good air purification, suitable for beginners in plant care.",
       "fullDescription": "<p><strong>Common Name:</strong> Golden Pothos</p><p><strong>Scientific Name:</strong> Golden Pothos</p><p><strong>Plant Family:</strong> Indoor Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Golden pothos is easy to grow, has good air purification, suitable for beginners in plant care.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Indoor Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Indoor Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Indoor Plants"]
     },
     {
       "id": 8,
@@ -792,11 +768,7 @@
       "shortDescription": "Snake plant has good air filtering ability, suitable for placing in bedrooms.",
       "fullDescription": "<p><strong>Common Name:</strong> Snake Plant</p><p><strong>Scientific Name:</strong> Snake Plant</p><p><strong>Plant Family:</strong> Indoor Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Snake plant has good air filtering ability, suitable for placing in bedrooms.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Indoor Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Indoor Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Indoor Plants"]
     },
     {
       "id": 9,
@@ -807,11 +779,7 @@
       "shortDescription": "Money tree carries good feng shui meaning, loved by many people.",
       "fullDescription": "<p><strong>Common Name:</strong> Money Tree</p><p><strong>Scientific Name:</strong> Money Tree</p><p><strong>Plant Family:</strong> Feng Shui Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Money tree carries good feng shui meaning, loved by many people.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Feng Shui Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Feng Shui Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Feng Shui Plants"]
     },
     {
       "id": 10,
@@ -822,11 +790,7 @@
       "shortDescription": "Lucky bamboo with meaning of luck and prosperity, often placed in living rooms.",
       "fullDescription": "<p><strong>Common Name:</strong> Lucky Bamboo</p><p><strong>Scientific Name:</strong> Lucky Bamboo</p><p><strong>Plant Family:</strong> Feng Shui Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Lucky bamboo with meaning of luck and prosperity, often placed in living rooms.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Feng Shui Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Feng Shui Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Feng Shui Plants"]
     },
     {
       "id": 11,
@@ -837,11 +801,7 @@
       "shortDescription": "Chinese evergreen has lush green leaves, easy to care for, suitable for busy people.",
       "fullDescription": "<p><strong>Common Name:</strong> Chinese Evergreen</p><p><strong>Scientific Name:</strong> Chinese Evergreen</p><p><strong>Plant Family:</strong> Indoor Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Chinese evergreen has lush green leaves, easy to care for, suitable for busy people.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Indoor Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Indoor Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Indoor Plants"]
     },
     {
       "id": 12,
@@ -852,11 +812,7 @@
       "shortDescription": "Peacock plant with beautiful patterned leaves, creating an accent for the space.",
       "fullDescription": "<p><strong>Common Name:</strong> Peacock Plant</p><p><strong>Scientific Name:</strong> Peacock Plant</p><p><strong>Plant Family:</strong> Premium Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Peacock plant with beautiful patterned leaves, creating an accent for the space.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Premium Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Premium Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Premium Plants"]
     },
     {
       "id": 13,
@@ -867,11 +823,7 @@
       "shortDescription": "Echeveria is small and cute, easy to care for, suitable for work desks or windows.",
       "fullDescription": "<p><strong>Common Name:</strong> Echeveria</p><p><strong>Scientific Name:</strong> Echeveria</p><p><strong>Plant Family:</strong> Mini Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Echeveria is small and cute, easy to care for, suitable for work desks or windows.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Mini Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Mini Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Mini Plants"]
     },
     {
       "id": 14,
@@ -882,11 +834,7 @@
       "shortDescription": "Cactus is sturdy, doesn't need much watering, suitable for forgetful people.",
       "fullDescription": "<p><strong>Common Name:</strong> Cactus</p><p><strong>Scientific Name:</strong> Cactus</p><p><strong>Plant Family:</strong> Mini Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Cactus is sturdy, doesn't need much watering, suitable for forgetful people.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Mini Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Mini Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Mini Plants"]
     },
     {
       "id": 15,
@@ -897,11 +845,7 @@
       "shortDescription": "Peace lily has beautiful white flowers, good air purification, suitable for placing indoors.",
       "fullDescription": "<p><strong>Common Name:</strong> Peace Lily</p><p><strong>Scientific Name:</strong> Peace Lily</p><p><strong>Plant Family:</strong> Indoor Plants</p><p><strong>Height:</strong> 0.8-1.2m</p><p>Peace lily has beautiful white flowers, good air purification, suitable for placing indoors.</p><p>The plant originates from many places around the world, has been introduced and widely distributed in Vietnam. The plant grows well in indoor environments, suitable for indirect light and moderate humidity.</p>",
       "category": "Indoor Plants",
-      "tags": [
-        "Ornamental Plants",
-        "Decoration",
-        "Indoor Plants"
-      ]
+      "tags": ["Ornamental Plants", "Decoration", "Indoor Plants"]
     }
   ],
   "reviews": [
@@ -935,5 +879,101 @@
       "date": "26/11/2025",
       "createdAt": "2025-11-26T15:25:41.835Z"
     }
-  ]
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Cây cảnh trong nhà",
+      "description": "...",
+      "createdAt": "...",
+      "updatedAt": "..."
+    },
+    {
+      "id": 2,
+      "name": "Cây cảnh cao cấp",
+      "description": "...",
+      "createdAt": "...",
+      "updatedAt": "..."
+    },
+    {
+      "id": 3,
+      "name": "Cây cảnh mini",
+      "description": "...",
+      "createdAt": "...",
+      "updatedAt": "..."
+    },
+    {
+      "id": 4,
+      "name": "Cây cảnh phong thủy",
+      "description": "...",
+      "createdAt": "...",
+      "updatedAt": "..."
+    }
+  ],
+  "feedback": [],
+  "requests": [
+    {
+      "id": 1,
+      "userName": "Trần Văn A",
+      "email": "khachnv@gmail.com",
+      "message": "Shop có thể nhập thêm dòng cây Sen Đá nâu không? Tôi muốn mua số lượng lớn để trang trí quán cafe.",
+      "createdAt": "2025-12-11T08:30:00.000Z",
+      "replied": true,
+      "accepted": false
+    },
+    {
+      "id": 2,
+      "userName": "Đoàn Nhật Quang",
+      "email": "bichle@example.com",
+      "message": "Tôi là đại lý, shop có chính sách giá sỉ cho đơn hàng trên 10 triệu không?",
+      "createdAt": "2025-12-10T14:15:00.000Z",
+      "replied": true,
+      "accepted": true
+    },
+    {
+      "id": 3,
+      "userName": "Tạ Quang Hữu",
+      "email": "cuongpham@test.com",
+      "message": "Shop có ship hỏa tốc ra Hà Nội trong ngày hôm nay được không? Tôi cần gấp làm quà tặng.",
+      "createdAt": "2025-12-09T09:00:00.000Z",
+      "replied": true,
+      "accepted": true
+    }
+  ],
+  "dashboard": {
+    "sales": [
+      {
+        "date": "Mon",
+        "total": 120
+      },
+      {
+        "date": "Tue",
+        "total": 200
+      },
+      {
+        "date": "Wed",
+        "total": 350
+      },
+      {
+        "date": "Thu",
+        "total": 150
+      },
+      {
+        "date": "Fri",
+        "total": 200
+      }
+    ],
+    "topProducts": [
+      {
+        "id": 1,
+        "name": "Cây Chân Chim",
+        "sales": 120
+      }
+    ],
+    "overview": {
+      "totalSales": 21500000,
+      "orders": 350,
+      "users": 120
+    }
+  }
 }
