@@ -44,7 +44,8 @@
       "emailVerified": false,
       "role": "user",
       "activationToken": "033a2fd4-4c76-48d6-acd7-8cf8bac8257a",
-      "createdAt": "2025-11-28T02:55:29.640Z"
+      "createdAt": "2025-11-28T02:55:29.640Z",
+      "active": false
     },
     {
       "id": "67d683dc-f9b6-45d6-975e-d170dd27f92e",
@@ -84,6 +85,19 @@
       "activationToken": "c9604376-5a1c-40d9-a6e3-b2f173d101c0",
       "role": "user",
       "createdAt": "2025-12-10T01:02:43.025Z"
+    },
+    {
+      "id": "b10cb0b2-2a78-48a3-8ebc-a7918980d6fc",
+      "fullName": "Phương Hà Lê Duy",
+      "phone": "0899078231",
+      "email": "phuonghaleduy@gmail.com",
+      "password": "$2b$10$1UBAGlDXcqCIds84O6G42eplH/dJeyV.fXjAxY7JoNZYfAQE.foke",
+      "website": "",
+      "subscribeEmail": false,
+      "emailVerified": true,
+      "activationToken": null,
+      "role": "user",
+      "createdAt": "2025-12-10T09:31:24.164Z"
     }
   ],
   "products": [
@@ -548,7 +562,7 @@
         "note": ""
       },
       "paymentMethod": "cod",
-      "status": "pending",
+      "status": "shipping",
       "createdAt": "2025-12-10T03:21:16.574Z",
       "id": "tEg_4UE"
     },
@@ -648,5 +662,101 @@
       "date": "26/11/2025",
       "createdAt": "2025-11-26T15:25:41.835Z"
     }
-  ]
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Cây cảnh trong nhà",
+      "description": "...",
+      "createdAt": "...",
+      "updatedAt": "..."
+    },
+    {
+      "id": 2,
+      "name": "Cây cảnh cao cấp",
+      "description": "...",
+      "createdAt": "...",
+      "updatedAt": "..."
+    },
+    {
+      "id": 3,
+      "name": "Cây cảnh mini",
+      "description": "...",
+      "createdAt": "...",
+      "updatedAt": "..."
+    },
+    {
+      "id": 4,
+      "name": "Cây cảnh phong thủy",
+      "description": "...",
+      "createdAt": "...",
+      "updatedAt": "..."
+    }
+  ],
+  "feedback": [],
+  "requests": [
+    {
+      "id": 1,
+      "userName": "Trần Văn A",
+      "email": "khachnv@gmail.com",
+      "message": "Shop có thể nhập thêm dòng cây Sen Đá nâu không? Tôi muốn mua số lượng lớn để trang trí quán cafe.",
+      "createdAt": "2025-12-11T08:30:00.000Z",
+      "replied": true,
+      "accepted": false
+    },
+    {
+      "id": 2,
+      "userName": "Đoàn Nhật Quang",
+      "email": "bichle@example.com",
+      "message": "Tôi là đại lý, shop có chính sách giá sỉ cho đơn hàng trên 10 triệu không?",
+      "createdAt": "2025-12-10T14:15:00.000Z",
+      "replied": true,
+      "accepted": true
+    },
+    {
+      "id": 3,
+      "userName": "Tạ Quang Hữu",
+      "email": "cuongpham@test.com",
+      "message": "Shop có ship hỏa tốc ra Hà Nội trong ngày hôm nay được không? Tôi cần gấp làm quà tặng.",
+      "createdAt": "2025-12-09T09:00:00.000Z",
+      "replied": true,
+      "accepted": true
+    }
+  ],
+  "dashboard": {
+    "sales": [
+      {
+        "date": "Mon",
+        "total": 120
+      },
+      {
+        "date": "Tue",
+        "total": 200
+      },
+      {
+        "date": "Wed",
+        "total": 350
+      },
+      {
+        "date": "Thu",
+        "total": 150
+      },
+      {
+        "date": "Fri",
+        "total": 200
+      }
+    ],
+    "topProducts": [
+      {
+        "id": 1,
+        "name": "Cây Chân Chim",
+        "sales": 120
+      }
+    ],
+    "overview": {
+      "totalSales": 21500000,
+      "orders": 350,
+      "users": 120
+    }
+  }
 }

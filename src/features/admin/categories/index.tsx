@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+// Import API từ file cục bộ
 import { categoriesApi } from "./api";
 import { Category } from "./types";
 import CategoryForm from "./components/CategoryForm";
@@ -8,8 +9,9 @@ export default function AdminCategories() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
 
-  const load = () => {
-    categoriesApi.getAll().then((data) => setCategories(data || []));
+  const load = async () => {
+    const data = await categoriesApi.getAll();
+    setCategories(data || []);
   };
 
   useEffect(() => {
@@ -18,6 +20,7 @@ export default function AdminCategories() {
 
   const handleEdit = (category: Category) => {
     setEditingCategory(category);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleSuccess = () => {
@@ -25,10 +28,23 @@ export default function AdminCategories() {
     load();
   };
 
+  const handleCancel = () => {
+    setEditingCategory(null);
+  };
+
   return (
-    <div>
-      <h1 className="text-2xl font-bold">Categories</h1>
-      <CategoryForm category={editingCategory} onSuccess={handleSuccess} />
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold text-gray-800 border-b pb-2">
+        Categories Management
+      </h1>
+
+      {/* Form luôn hiển thị. Nếu editingCategory=null thì là Create mode */}
+      <CategoryForm
+        category={editingCategory}
+        onSuccess={handleSuccess}
+        onCancel={handleCancel}
+      />
+
       <CategoryTable
         categories={categories}
         onRefresh={load}
