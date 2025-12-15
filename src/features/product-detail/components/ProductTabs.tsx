@@ -1,117 +1,117 @@
-import { useState, useEffect } from "react";
-import { Product } from "@/types/product";
-import { ProductReview } from "@/types/review";
-import { StarRating } from "@/components/ui/StarRating";
-import { cn } from "@/lib/utils";
-import { sanitizeHtml } from "@/lib/sanitize";
-import {
-  CLASS_TEXT_GRAY_RELAXED,
+import { useState, useEffect } from 'react'
+import { Product } from '@/types/product'
+import { ProductReview } from '@/types/review'
+import { StarRating } from '@/components/ui/StarRating'
+import { cn } from '@/lib/utils'
+import { sanitizeHtml } from '@/lib/sanitize'
+import { 
+  CLASS_TEXT_GRAY_RELAXED, 
   CLASS_TEXT_GRAY_600,
   CLASS_MT_8,
   CLASS_SPACE_Y_6,
   CONTEXT_PRODUCT_TABS,
-} from "@/constants/common";
-import { getReviewsByProductId } from "@/apis/reviews";
-import { hasUserPurchasedProduct } from "@/apis/orders";
-import { useAuth } from "@/contexts";
-import { ReviewForm } from "./ReviewForm";
-import { Link } from "react-router-dom";
-import { logError } from "@/lib/logger";
+} from '@/constants/common'
+import { getReviewsByProductId } from '@/apis/reviews'
+import { hasUserPurchasedProduct } from '@/apis/orders'
+import { useAuth } from '@/contexts/AuthContext'
+import { ReviewForm } from './ReviewForm'
+import { Link } from 'react-router-dom'
+import { logError } from '@/lib/logger'
 
 interface ProductTabsProps {
-  product: Product;
+  product: Product
 }
 
-type TabType = "info" | "reviews" | "tags";
+type TabType = 'info' | 'reviews' | 'tags'
 
 export const ProductTabs = ({ product }: ProductTabsProps) => {
-  const { user, isLoggedIn } = useAuth();
-  const [activeTab, setActiveTab] = useState<TabType>("info");
-  const [reviews, setReviews] = useState<ProductReview[]>([]);
-  const [loadingReviews, setLoadingReviews] = useState(false);
-  const [canReview, setCanReview] = useState(false);
-  const [checkingPurchase, setCheckingPurchase] = useState(false);
+  const { user, isLoggedIn } = useAuth()
+  const [activeTab, setActiveTab] = useState<TabType>('info')
+  const [reviews, setReviews] = useState<ProductReview[]>([])
+  const [loadingReviews, setLoadingReviews] = useState(false)
+  const [canReview, setCanReview] = useState(false)
+  const [checkingPurchase, setCheckingPurchase] = useState(false)
 
   // Load reviews từ API
   useEffect(() => {
     const loadReviews = async () => {
-      setLoadingReviews(true);
+      setLoadingReviews(true)
       try {
-        const productReviews = await getReviewsByProductId(product.id);
-        setReviews(productReviews);
+        const productReviews = await getReviewsByProductId(product.id)
+        setReviews(productReviews)
       } catch (error) {
         logError({
           error,
           context: CONTEXT_PRODUCT_TABS,
-          action: "loadReviews",
+          action: 'loadReviews',
           productId: product.id,
           timestamp: new Date().toISOString(),
-          message: "Error loading reviews",
-        });
+          message: 'Error loading reviews',
+        })
       } finally {
-        setLoadingReviews(false);
+        setLoadingReviews(false)
       }
-    };
+    }
 
-    loadReviews();
-  }, [product.id]);
+    loadReviews()
+  }, [product.id])
 
   // Kiểm tra user có thể review không
   useEffect(() => {
     const checkCanReview = async () => {
       if (!isLoggedIn || !user) {
-        setCanReview(false);
-        return;
+        setCanReview(false)
+        return
       }
 
-      setCheckingPurchase(true);
+      setCheckingPurchase(true)
       try {
-        const hasPurchased = await hasUserPurchasedProduct(user.id, product.id);
-        setCanReview(hasPurchased);
+        const hasPurchased = await hasUserPurchasedProduct(user.id, product.id)
+        setCanReview(hasPurchased)
       } catch (error) {
         logError({
           error,
           context: CONTEXT_PRODUCT_TABS,
-          action: "checkCanReview",
+          action: 'checkCanReview',
           productId: product.id,
           userId: user.id,
           timestamp: new Date().toISOString(),
-          message: "Error checking purchase status",
-        });
-        setCanReview(false);
+          message: 'Error checking purchase status',
+        })
+        setCanReview(false)
       } finally {
-        setCheckingPurchase(false);
+        setCheckingPurchase(false)
       }
-    };
+    }
 
-    checkCanReview();
-  }, [isLoggedIn, user, product.id]);
+    checkCanReview()
+  }, [isLoggedIn, user, product.id])
 
   const handleReviewSubmitted = async () => {
     // Reload reviews sau khi submit
-    setLoadingReviews(true);
+    setLoadingReviews(true)
     try {
-      const productReviews = await getReviewsByProductId(product.id);
-      setReviews(productReviews);
+      const productReviews = await getReviewsByProductId(product.id)
+      setReviews(productReviews)
     } catch (error) {
       logError({
         error,
         context: CONTEXT_PRODUCT_TABS,
-        action: "reloadReviews",
+        action: 'reloadReviews',
         productId: product.id,
         timestamp: new Date().toISOString(),
-        message: "Error reloading reviews",
-      });
+        message: 'Error reloading reviews',
+      })
     } finally {
-      setLoadingReviews(false);
+      setLoadingReviews(false)
     }
-  };
+  }
 
   const tabs = [
-    { id: "info" as TabType, label: "THÔNG TIN SẢN PHẨM" },
-    { id: "reviews" as TabType, label: "KHÁCH HÀNG ĐÁNH GIÁ" },
-    { id: "tags" as TabType, label: "THẺ TAG" },
-  ];
+    { id: 'info' as TabType, label: 'THÔNG TIN SẢN PHẨM' },
+    { id: 'reviews' as TabType, label: 'KHÁCH HÀNG ĐÁNH GIÁ' },
+    { id: 'tags' as TabType, label: 'THẺ TAG' },
+  ]
 
   return (
     <div className={CLASS_MT_8}>
@@ -122,10 +122,10 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
             type="button"
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "px-6 py-3 font-semibold text-sm transition-colors",
+              'px-6 py-3 font-semibold text-sm transition-colors',
               activeTab === tab.id
-                ? "text-green-primary border-b-2 border-green-primary"
-                : "text-gray-600 hover:text-green-primary"
+                ? 'text-green-primary border-b-2 border-green-primary'
+                : 'text-gray-600 hover:text-green-primary'
             )}
           >
             {tab.label}
@@ -134,27 +134,22 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
       </div>
 
       <div className="py-6">
-        {activeTab === "info" && (
+        {activeTab === 'info' && (
           <div className="prose max-w-none">
             {product.fullDescription ? (
               <div
-                dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(product.fullDescription),
-                }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(product.fullDescription) }}
                 className={CLASS_TEXT_GRAY_RELAXED}
               />
             ) : (
               <div className={CLASS_TEXT_GRAY_RELAXED}>
-                <p>
-                  {product.description ||
-                    "Không có thông tin chi tiết về sản phẩm."}
-                </p>
+                <p>{product.description || 'Không có thông tin chi tiết về sản phẩm.'}</p>
               </div>
             )}
           </div>
         )}
 
-        {activeTab === "reviews" && (
+        {activeTab === 'reviews' && (
           <div className={CLASS_SPACE_Y_6}>
             {/* Form bình luận */}
             {checkingPurchase ? (
@@ -175,14 +170,14 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
             ) : (
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-blue-800 mb-2">
-                  Vui lòng{" "}
+                  Vui lòng{' '}
                   <Link
                     to="/auth/login"
                     className="text-blue-600 hover:text-blue-800 underline font-medium"
                   >
                     đăng nhập
-                  </Link>{" "}
-                  để có thể đánh giá sản phẩm.
+                  </Link>
+                  {' '}để có thể đánh giá sản phẩm.
                 </p>
               </div>
             )}
@@ -192,6 +187,7 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
               <h4 className="text-lg font-semibold text-gray-900 mb-4">
                 Đánh giá khách hàng ({reviews.length})
               </h4>
+              
               {loadingReviews ? (
                 <div className="text-center py-8">
                   <p className="text-gray-500">Đang tải đánh giá...</p>
@@ -199,20 +195,13 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
               ) : reviews.length > 0 ? (
                 <div className={CLASS_SPACE_Y_6}>
                   {reviews.map((review) => (
-                    <div
-                      key={review.id}
-                      className="border-b border-gray-200 pb-4 last:border-0"
-                    >
+                    <div key={review.id} className="border-b border-gray-200 pb-4 last:border-0">
                       <div className="flex items-start justify-between mb-2">
                         <div>
-                          <h4 className="font-semibold text-gray-900">
-                            {review.userName}
-                          </h4>
+                          <h4 className="font-semibold text-gray-900">{review.userName}</h4>
                           <div className="flex items-center gap-2 mt-1">
                             <StarRating rating={review.rating} size="sm" />
-                            <span className="text-sm text-gray-500">
-                              {review.date}
-                            </span>
+                            <span className="text-sm text-gray-500">{review.date}</span>
                           </div>
                         </div>
                       </div>
@@ -221,15 +210,13 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
                   ))}
                 </div>
               ) : (
-                <p className={CLASS_TEXT_GRAY_600}>
-                  Chưa có đánh giá nào cho sản phẩm này.
-                </p>
+                <p className={CLASS_TEXT_GRAY_600}>Chưa có đánh giá nào cho sản phẩm này.</p>
               )}
             </div>
           </div>
         )}
 
-        {activeTab === "tags" && (
+        {activeTab === 'tags' && (
           <div className="flex flex-wrap gap-2">
             {product.tags && product.tags.length > 0 ? (
               product.tags.map((tag, index) => (
@@ -247,5 +234,6 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
+
