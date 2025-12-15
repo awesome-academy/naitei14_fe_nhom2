@@ -1,8 +1,8 @@
 export interface User {
-  id: number;
-  name: string;
+  id: number | string;
+  fullName: string;
   email: string;
   role: string;
   createdAt: string;
-  active: boolean;
+  active?: boolean;
 }

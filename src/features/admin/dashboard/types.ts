@@ -14,3 +14,9 @@ export interface DashboardOverview {
   orders: number;
   users: number;
 }
+
+export interface DashboardData {
+  sales: SalesRecord[];
+  topProducts: TopProduct[];
+  overview: DashboardOverview;
+}
