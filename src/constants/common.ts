@@ -34,8 +34,7 @@ export const TOKEN_EXPIRY_HOURS = 24;
 // Common messages
 export const MESSAGE_DEVELOPING = "Chức năng đang phát triển" as const;
 export const MESSAGE_REGISTER_FAILED = "Đăng ký thất bại" as const;
-export const MESSAGE_LOGIN_FAILED =
-  "Đăng nhập thất bại. Vui lòng thử lại." as const;
+export const MESSAGE_LOGIN_FAILED = "Đăng nhập thất bại. Vui lòng thử lại." as const;
 export const ACTIVATION_INVALID_LINK = "Link kích hoạt không hợp lệ" as const;
 export const ACTIVATION_SUCCESS =
   "Tài khoản đã được kích hoạt thành công!" as const;
