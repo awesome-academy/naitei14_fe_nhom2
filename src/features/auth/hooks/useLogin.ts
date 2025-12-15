@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authAPI";
-import { useAuth } from "@/contexts";
+import { useAuth } from "@/contexts/AuthContext";
 import { MESSAGE_LOGIN_FAILED } from "@/constants/common";
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
