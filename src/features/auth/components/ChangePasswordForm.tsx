@@ -5,7 +5,7 @@ import { LuEye, LuEyeOff } from "react-icons/lu";
 import { ChangePasswordFormData } from "../types/auth.types";
 import { useChangePassword } from "../hooks/useChangePassword";
 import { validateChangePasswordForm } from "../utils/authValidation";
-import { useAuth } from "@/contexts";
+import { useAuth } from "@/contexts/AuthContext";
 import { RenderButton, Alert, StatusAlert } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import {
