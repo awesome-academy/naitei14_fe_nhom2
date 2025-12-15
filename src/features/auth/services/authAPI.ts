@@ -1,4 +1,3 @@
-import bcrypt from "bcryptjs";
 import {
   RegisterRequest,
   RegistrationError,
@@ -15,6 +14,8 @@ import {
 } from "@/constants/common";
 import { sendActivationEmail, sendResetPasswordEmail } from "./emailService";
 import { User } from "@/types/user";
+
+import bcrypt from "bcryptjs";
 
 export const registerUser = async (data: RegisterRequest): Promise<User> => {
   const activationToken = crypto.randomUUID();
