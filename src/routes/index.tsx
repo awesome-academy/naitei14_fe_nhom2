@@ -14,7 +14,13 @@ import { RenderProductDetail } from "@/features/product-detail";
 import { ProfilePage } from "@/features/profile";
 import { CartPage } from "@/features/cart";
 import { CheckoutPage } from "@/features/checkout";
-
+import AdminLayout from "@/components/layout/AdminLayout";
+import AdminDashboard from "@/features/admin/dashboard";
+import AdminOrders from "@/features/admin/orders";
+import AdminProducts from "@/features/admin/products";
+import AdminCategories from "@/features/admin/categories";
+import AdminUsers from "@/features/admin/users";
+import AdminRequest from "@/features/admin/request";
 const LayoutWrapper = () => {
   return (
     <MainLayout>
@@ -74,6 +80,19 @@ export const router = createBrowserRouter([
       {
         path: "checkout",
         element: <CheckoutPage />,
+      },
+      {
+        path: "/admin",
+        element: <AdminLayout />,
+        children: [
+          { path: "dashboard", element: <AdminDashboard /> },
+          { path: "orders", element: <AdminOrders /> },
+          { path: "products", element: <AdminProducts /> },
+          { path: "categories", element: <AdminCategories /> },
+          { path: "users", element: <AdminUsers /> },
+          { path: "request", element: <AdminRequest /> },
+          { path: "", element: <AdminDashboard /> },
+        ],
       },
     ],
   },
