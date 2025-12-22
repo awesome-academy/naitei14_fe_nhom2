@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-// Import api và type cục bộ
+import { useEffect, useState } from "react";
 import { usersApi } from "./api";
 import { User } from "./types";
 import UserTable from "./components/UserTable";

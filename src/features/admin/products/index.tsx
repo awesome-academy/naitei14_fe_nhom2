@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "./types";
-import { productsApi } from "./api";
+import { productsApi } from "./api"; // Import Local API
 import ProductTable from "./components/ProductTable";
 import ProductDetail from "./components/ProductDetail";
 import CreateProduct from "./CreateProduct";

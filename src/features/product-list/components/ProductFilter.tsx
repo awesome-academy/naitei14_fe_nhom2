@@ -1,9 +1,8 @@
-import { useState } from 'react'
-import { cn } from '@/lib/utils'
-import { ProductFilters } from '@/apis/products'
-import { useTranslation } from '@/hooks'
-import { formatCurrency } from '@/i18n'
-import { LOCALE } from "@/constants/common";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { ProductFilters } from "@/apis/products";
+import { useTranslation } from "@/hooks";
+import { formatCurrency } from "@/i18n";
 
 interface CategoryWithCount {
   name: string;
@@ -31,19 +30,28 @@ const PRICE_RANGES = [
 ];
 
 const COLORS = [
-  { key: 'green', value: 'green', hex: '#46A358' },
-  { key: 'orange', value: 'orange', hex: '#FF6B35' },
-  { key: 'purple', value: 'purple', hex: '#8B5CF6' },
-  { key: 'blue', value: 'blue', hex: '#3B82F6' },
-  { key: 'yellow', value: 'yellow', hex: '#FBBF24' },
-  { key: 'pink', value: 'pink', hex: '#EC4899' },
-]
+  { key: "green", value: "green", hex: "#46A358" },
+  { key: "orange", value: "orange", hex: "#FF6B35" },
+  { key: "purple", value: "purple", hex: "#8B5CF6" },
+  { key: "blue", value: "blue", hex: "#3B82F6" },
+  { key: "yellow", value: "yellow", hex: "#FBBF24" },
+  { key: "pink", value: "pink", hex: "#EC4899" },
+];
 
-export const ProductFilter = ({ categories, onFilterChange, searchValue, onClearAll, className }: ProductFilterProps) => {
+export const ProductFilter = ({
+  categories,
+  onFilterChange,
+  searchValue,
+  onClearAll,
+  className,
+}: ProductFilterProps) => {
   const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState<string>('')
-  const [selectedPriceRange, setSelectedPriceRange] = useState<{ min: number; max: number } | null>(null)
-  const [selectedColor, setSelectedColor] = useState<string>('')
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedPriceRange, setSelectedPriceRange] = useState<{
+    min: number;
+    max: number;
+  } | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string>("");
 
   const handleCategoryChange = (category: string) => {
     const isCategorySelected = category === selectedCategory;
@@ -113,7 +121,9 @@ export const ProductFilter = ({ categories, onFilterChange, searchValue, onClear
       )}
     >
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{t("products.filters")}</h3>
+        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+          {t("products.filters")}
+        </h3>
         {hasActiveFilters && (
           <button
             onClick={handleReset}
@@ -127,14 +137,17 @@ export const ProductFilter = ({ categories, onFilterChange, searchValue, onClear
       {searchValue && (
         <div className="mb-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-md">
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            <span className="font-medium">{t("products.searchLabel")}</span> <span className="text-gray-800">"{searchValue}"</span>
+            <span className="font-medium">{t("products.searchLabel")}</span>{" "}
+            <span className="text-gray-800">"{searchValue}"</span>
           </div>
         </div>
       )}
 
       <div className="space-y-6">
         <div>
-          <h4 className={CLASS_FILTER_TITLE}>{t("products.productCategories")}</h4>
+          <h4 className={CLASS_FILTER_TITLE}>
+            {t("products.productCategories")}
+          </h4>
           <div className={CLASS_SPACE_Y2}>
             {categories.map((category) => (
               <label

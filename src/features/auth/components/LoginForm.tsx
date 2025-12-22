@@ -12,21 +12,32 @@ import {
 } from "@/components/ui";
 import { resendActivationEmail } from "../services/authAPI";
 import { cn } from "@/lib/utils";
-
-const customLoginResolver = async (values: LoginFormData) => {
-  const errors: FieldErrors<LoginFormData> = {};
-  const validationErrors = await validateLoginForm(values);
-  Object.entries(validationErrors).forEach(([field, message]) => {
-    errors[field as keyof LoginFormData] = { message, type: "manual" };
-  });
-  return {
-    values: Object.keys(errors).length === 0 ? values : {},
-    errors,
-  };
-};
+import SocialLoginButtons from "./SocialLoginButtons";
+import { useThirdPartyLogin } from "../hooks/useThirdPartyLogin";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const LoginForm: React.FC = () => {
+  const { t } = useTranslation();
+
+  const customLoginResolver = async (values: LoginFormData) => {
+    const errors: FieldErrors<LoginFormData> = {};
+    const validationErrors = await validateLoginForm(values);
+    Object.entries(validationErrors).forEach(([field, message]) => {
+      errors[field as keyof LoginFormData] = { message: t(message as any), type: "manual" };
+    });
+    return {
+      values: Object.keys(errors).length === 0 ? values : {},
+      errors,
+    };
+  };
   const { login, loading, error } = useLogin();
+  const {
+    handleGoogleLogin,
+    handleFacebookLogin,
+    handleGithubLogin,
+    loading: thirdPartyLoading,
+    error: thirdPartyError,
+  } = useThirdPartyLogin();
   const {
     register,
     handleSubmit,
@@ -85,7 +96,7 @@ const LoginForm: React.FC = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Heading */}
             <h2 className="text-2xl font-bold text-green-primary mb-6">
-              THÔNG TIN CÁ NHÂN
+              {t("auth.login.title")}
             </h2>
 
             {/* Email Input */}
@@ -94,7 +105,7 @@ const LoginForm: React.FC = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-primary-text dark:text-dark-text mb-2"
               >
-                Email của bạn
+                {t("auth.login.email")}
               </label>
               <input
                 id="email"
@@ -104,7 +115,7 @@ const LoginForm: React.FC = () => {
                   "w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500",
                   errors.email ? "border-red-500" : "border-gray-300"
                 )}
-                placeholder="Email của bạn"
+                placeholder={t("auth.login.email")}
               />
               {errors.email?.message && (
                 <p className="text-red-500 text-sm mt-1">
@@ -119,7 +130,7 @@ const LoginForm: React.FC = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-primary-text dark:text-dark-text mb-2"
               >
-                Mật khẩu
+                {t("auth.login.password")}
               </label>
               <div className="relative">
                 <input
@@ -130,13 +141,13 @@ const LoginForm: React.FC = () => {
                     "w-full px-4 py-3 pr-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500",
                     errors.password ? "border-red-500" : "border-gray-300"
                   )}
-                  placeholder="Mật khẩu"
+                  placeholder={t("auth.login.password")}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-text dark:text-gray-400 dark:hover:text-dark-text"
-                  aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary-text"
+                  aria-label={showPassword ? t("common.hide") : t("common.show")}
                 >
                   {showPassword ? <LuEyeOff size={20} /> : <LuEye size={20} />}
                 </button>
@@ -161,14 +172,14 @@ const LoginForm: React.FC = () => {
                   htmlFor="rememberMe"
                   className="ml-2 text-sm text-primary-text dark:text-dark-text"
                 >
-                  Ghi nhớ tài khoản
+                  {t("auth.login.rememberMe")}
                 </label>
               </div>
               <a
                 href="/auth/forgot-password"
                 className="text-sm text-blue-600 hover:underline"
               >
-                Bạn quên mật khẩu?
+                {t("auth.login.forgotPassword")}
               </a>
             </div>
 
@@ -182,13 +193,13 @@ const LoginForm: React.FC = () => {
               <>
                 <AlertWithAction
                   type="warning"
-                  title="Tài khoản chưa được xác thực"
-                  message="Vui lòng tiến hành xác thực tài khoản."
+                  title={t("auth.activate.title")}
+                  message={t("auth.activate.description")}
                   action={{
-                    label: "Gửi lại email xác thực",
+                    label: t("auth.activate.resendEmail"),
                     onClick: handleResendEmail,
                     isLoading: resendLoading,
-                    loadingText: "Đang gửi...",
+                    loadingText: t("common.sending"),
                     disabled: !watchedEmail || resendLoading,
                   }}
                 />
@@ -212,10 +223,24 @@ const LoginForm: React.FC = () => {
               type="submit"
               variant="primary-rounded"
               isLoading={loading}
-              loadingText="ĐANG ĐĂNG NHẬP..."
+              loadingText={t("auth.login.loginButton") + "..."}
             >
-              ĐĂNG NHẬP
+              {t("auth.login.loginButton")}
             </RenderButton>
+
+            {/* Third Party Error */}
+            {thirdPartyError && <Alert type="error" message={thirdPartyError} />}
+
+            {/* Social Login Buttons */}
+            <div className="mt-6">
+              <p className="text-center text-sm text-gray-500 mb-4">{t("auth.login.orLoginWith")}</p>
+              <SocialLoginButtons
+                onGoogleLogin={handleGoogleLogin}
+                onFacebookLogin={handleFacebookLogin}
+                onGithubLogin={handleGithubLogin}
+                isLoading={thirdPartyLoading}
+              />
+            </div>
           </form>
         </div>
       </div>
@@ -224,20 +249,18 @@ const LoginForm: React.FC = () => {
       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-8">
         <div className="max-w-md text-center">
           <h2 className="text-2xl font-bold text-green-600 mb-4">
-            BẠN CHƯA CÓ TÀI KHOẢN?
+            {t("auth.login.noAccount")}
           </h2>
-          <p className="text-primary-text dark:text-dark-text mb-6 leading-relaxed text-justify">
-            Đăng ký tài khoản ngay để có thể mua hàng nhanh chóng và dễ dàng
-            hơn! Ngoài ra còn có rất nhiều chính sách và ưu đãi cho các thành
-            viên của GreenShop.
+          <p className="text-primary-text mb-6 leading-relaxed text-justify">
+            {t("auth.login.registerPrompt")}
           </p>
           <a href="/auth/register">
             <RenderButton
               variant="primary-rounded"
               isLoading={loading}
-              loadingText="ĐĂNG KÝ..."
+              loadingText={t("auth.register.registerButton") + "..."}
             >
-              ĐĂNG KÝ
+              {t("auth.register.registerButton")}
             </RenderButton>
           </a>
         </div>

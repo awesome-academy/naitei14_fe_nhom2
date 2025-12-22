@@ -6,6 +6,7 @@ export * from "./pages";
 
 // Export hooks
 export * from "./hooks/useRegister";
+export * from "./hooks/useThirdPartyLogin";
 
 // Export types
 export * from "./types/auth.types";

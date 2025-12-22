@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-// Import file api.ts nằm cùng thư mục cha
 import { categoriesApi } from "../api";
 import { Category } from "../types";
 

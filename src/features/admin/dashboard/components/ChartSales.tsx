@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ResponsiveContainer,
   LineChart,
@@ -19,6 +19,7 @@ export default function ChartSales() {
   const { theme } = useTheme();
 
   useEffect(() => {
+    // Gọi API thật, không tự cộng thêm dữ liệu giả nữa
     dashboardApi.getSales().then((res) => {
       setData(res);
     });

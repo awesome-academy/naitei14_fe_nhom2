@@ -1,4 +1,3 @@
-import React from "react";
 import { TopProduct } from "../types";
 
 interface Props {
