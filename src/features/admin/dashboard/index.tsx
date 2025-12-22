@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import {
-  dashboardApi,
-  TopProduct,
-  DashboardOverview,
-} from "../../../apis/admin/dashboardIndex"; // mock API
+// Import từ local feature folder
+import { dashboardApi } from "./api";
+import { TopProduct, DashboardOverview } from "./types";
 
 import ChartSales from "./components/ChartSales";
 import ProductTopList from "./components/ProductTopList";
@@ -13,26 +11,63 @@ export default function AdminDashboard() {
   const [overview, setOverview] = useState<DashboardOverview | null>(null);
 
   useEffect(() => {
-    dashboardApi.getTopProducts().then(setTopProducts);
-    dashboardApi.getOverview().then(setOverview);
+    // Tải dữ liệu song song cho nhanh
+    const loadData = async () => {
+      const [productsData, overviewData] = await Promise.all([
+        dashboardApi.getTopProducts(),
+        dashboardApi.getOverview(),
+      ]);
+
+      setTopProducts(productsData);
+      setOverview(overviewData);
+    };
+
+    loadData();
   }, []);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">Dashboard</h1>
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
 
       {overview && (
-        <div className="grid grid-cols-3 gap-4 mt-4">
-          <div className="p-4 border rounded">
-            Total Sales: {overview.totalSales.toLocaleString()}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-6 border rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
+            <span className="text-gray-500 text-sm uppercase font-semibold">
+              Total Revenue
+            </span>
+            <span className="text-2xl font-bold text-green-600 mt-2">
+              {overview.totalSales.toLocaleString()}₫
+            </span>
           </div>
-          <div className="p-4 border rounded">Orders: {overview.orders}</div>
-          <div className="p-4 border rounded">Users: {overview.users}</div>
+
+          <div className="p-6 border rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
+            <span className="text-gray-500 text-sm uppercase font-semibold">
+              Total Orders
+            </span>
+            <span className="text-2xl font-bold text-blue-600 mt-2">
+              {overview.orders}
+            </span>
+          </div>
+
+          <div className="p-6 border rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
+            <span className="text-gray-500 text-sm uppercase font-semibold">
+              Total Users
+            </span>
+            <span className="text-2xl font-bold text-purple-600 mt-2">
+              {overview.users}
+            </span>
+          </div>
         </div>
       )}
 
-      <ChartSales />
-      <ProductTopList products={topProducts} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <ChartSales />
+        </div>
+        <div>
+          <ProductTopList products={topProducts} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+// Import api và type
 import { usersApi } from "./api";
-import { User } from "./types";
+import { User } from "@/types/user";
 import UserTable from "./components/UserTable";
 import UserDetail from "./components/UserDetail";
 
@@ -12,6 +13,7 @@ export default function UsersPage() {
     const data = await usersApi.getAll();
     setUsers(data);
 
+    // Nếu đang chọn user nào đó, cập nhật lại thông tin user đó luôn
     if (selected) {
       const updatedUser = data.find((u) => u.id === selected.id);
       setSelected(updatedUser || null);
@@ -22,26 +24,39 @@ export default function UsersPage() {
     refresh();
   }, []);
 
-  const handleToggleActive = async (id: number) => {
+  const handleToggleActive = async (user: User) => {
+    const newStatus = !(user.active !== false); // Logic đảo ngược: nếu đang active (true/undefined) -> false
+
+    // Optimistic Update: Cập nhật giao diện ngay lập tức
     setUsers((prev) =>
-      prev.map((u) => (u.id === id ? { ...u, active: !u.active } : u))
+      prev.map((u) => (u.id === user.id ? { ...u, active: newStatus } : u))
     );
 
-    if (selected?.id === id) {
-      setSelected((prev) => (prev ? { ...prev, active: !prev.active } : null));
+    if (selected?.id === user.id) {
+      setSelected((prev) => (prev ? { ...prev, active: newStatus } : null));
     }
 
     try {
-      await usersApi.toggleActive(id);
+      // Gọi API cập nhật thật
+      await usersApi.updateActive(user.id, newStatus);
     } catch (err) {
       console.error("Failed to toggle user status", err);
-      await refresh();
+      alert("Update failed, reverting changes...");
+      await refresh(); // Revert nếu lỗi
     }
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">User Management</h1>
+    <div className="p-4 bg-white rounded shadow-sm border m-4">
+      <div className="flex justify-between items-center mb-6 border-b pb-4">
+        <h1 className="text-2xl font-bold text-gray-800">User Management</h1>
+        <button
+          onClick={refresh}
+          className="px-4 py-2 bg-gray-100 text-gray-600 rounded hover:bg-gray-200 transition text-sm font-medium"
+        >
+          Refresh List
+        </button>
+      </div>
 
       <UserTable
         users={users}
