@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 // SỬA IMPORT: Dùng api cục bộ
 import { ordersApi } from "../api";
 import { Order } from "../types";
+import {
+  sendOrderConfirmationEmail,
+  sendOrderCancellationEmail,
+} from "@/features/auth/services/emailService";
 
 interface Props {
   order: Order | null;
@@ -36,7 +40,38 @@ export default function OrderForm({ order, onSuccess, onCancel }: Props) {
     if (!order) return;
 
     try {
+      // Update order status
       await ordersApi.updateStatus(order.id, data.status);
+
+      // Send email notifications based on status change
+      if (data.status === "confirmed" && order.shippingInfo) {
+        try {
+          await sendOrderConfirmationEmail(
+            order.shippingInfo.email,
+            order.shippingInfo.fullName,
+            String(order.id),
+            order.items,
+            order.totalAmount
+          );
+        } catch (emailError) {
+          console.error("Failed to send confirmation email:", emailError);
+          // Don't fail the order update if email fails
+        }
+      } else if (data.status === "cancelled" && order.shippingInfo) {
+        try {
+          await sendOrderCancellationEmail(
+            order.shippingInfo.email,
+            order.shippingInfo.fullName,
+            String(order.id),
+            order.items,
+            order.totalAmount
+          );
+        } catch (emailError) {
+          console.error("Failed to send cancellation email:", emailError);
+          // Don't fail the order update if email fails
+        }
+      }
+
       onSuccess();
     } catch (error) {
       console.error("Update failed", error);

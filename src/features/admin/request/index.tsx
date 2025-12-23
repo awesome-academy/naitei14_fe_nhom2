@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // SỬA IMPORT: Trỏ về file api cục bộ
 import { requestApi } from "./api";
 import { Request } from "./types";

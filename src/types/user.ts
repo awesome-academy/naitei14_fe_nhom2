@@ -17,4 +17,5 @@ export interface User {
   createdAt: string;
   activatedAt?: string;
   passwordResetAt?: string;
+  active?: boolean;
 }

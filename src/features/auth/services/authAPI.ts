@@ -120,6 +120,10 @@ export const loginUser = async (
     throw new LoginError("Vui lòng xác thực email trước khi đăng nhập");
   }
 
+  if (user.active === false) {
+    throw new LoginError("Tài khoản đã bị vô hiệu hóa");
+  }
+
   if (!user.password) {
     throw new LoginError("Dữ liệu mật khẩu bị thiếu");
   }

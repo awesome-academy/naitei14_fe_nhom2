@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // Import từ local feature folder
 import { dashboardApi } from "./api";
 import { TopProduct, DashboardOverview } from "./types";

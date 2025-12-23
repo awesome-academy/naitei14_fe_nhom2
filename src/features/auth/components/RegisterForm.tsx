@@ -15,20 +15,22 @@ import {
 } from "@/constants/common";
 import { cn } from "@/lib/utils";
 import { Alert, StatusAlert, RenderButton } from "@/components/ui";
-
-const customResolver = async (values: RegisterFormData) => {
-  const errors: FieldErrors<RegisterFormData> = {};
-  const validationErrors = await validateForm(values);
-  Object.entries(validationErrors).forEach(([field, message]) => {
-    errors[field as keyof RegisterFormData] = { message, type: "manual" };
-  });
-  return {
-    values: Object.keys(errors).length === 0 ? values : {},
-    errors,
-  };
-};
+import { useTranslation } from "@/hooks/useTranslation";
 
 const RegisterForm: React.FC = () => {
+  const { t } = useTranslation();
+
+  const customResolver = async (values: RegisterFormData) => {
+    const errors: FieldErrors<RegisterFormData> = {};
+    const validationErrors = await validateForm(values);
+    Object.entries(validationErrors).forEach(([field, message]) => {
+      errors[field as keyof RegisterFormData] = { message: t(message as any), type: "manual" };
+    });
+    return {
+      values: Object.keys(errors).length === 0 ? values : {},
+      errors,
+    };
+  };
   const {
     createUser,
     loading,
@@ -81,12 +83,12 @@ const RegisterForm: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* THÔNG TIN CÁ NHÂN */}
         <div className="mb-8">
-          <h2 className={CLASS_SECTION_HEADING}>THÔNG TIN CÁ NHÂN</h2>
+          <h2 className={CLASS_SECTION_HEADING}>{t("profile.personalInformation")}</h2>
 
           <div className={CLASS_GRID_TWO_COL}>
             <div>
               <label className={CLASS_LABEL}>
-                Họ và tên <span className="text-red-500">*</span>
+                {t("common.fullName")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -103,7 +105,7 @@ const RegisterForm: React.FC = () => {
 
             <div>
               <label className={CLASS_LABEL}>
-                Số ĐT <span className="text-red-500">*</span>
+                {t("common.phone")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -120,7 +122,7 @@ const RegisterForm: React.FC = () => {
 
             <div>
               <label className={CLASS_LABEL}>
-                Địa chỉ email <span className="text-red-500">*</span>
+                {t("common.email")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -136,7 +138,7 @@ const RegisterForm: React.FC = () => {
             </div>
 
             <div>
-              <label className={CLASS_LABEL}>Website của bạn</label>
+              <label className={CLASS_LABEL}>{t("common.website")}</label>
               <input
                 type="text"
                 {...register("website")}
@@ -159,7 +161,7 @@ const RegisterForm: React.FC = () => {
                 className="w-4 h-4 text-green-primary border-gray-300 rounded focus:ring-green-dark"
               />
               <span className="ml-2 text-sm text-gray-700">
-                Đăng ký nhận thông tin qua email
+                {t("profile.subscribeEmail")}
               </span>
             </label>
           </div>
@@ -167,12 +169,12 @@ const RegisterForm: React.FC = () => {
 
         {/* THÔNG TIN TÀI KHOẢN */}
         <div className="mb-8 mt-12">
-          <h2 className={CLASS_SECTION_HEADING}>THÔNG TIN TÀI KHOẢN</h2>
+          <h2 className={CLASS_SECTION_HEADING}>{t("auth.register.accountInfo")}</h2>
 
           <div className={CLASS_GRID_TWO_COL}>
             <div>
               <label className={CLASS_LABEL}>
-                Mật khẩu <span className="text-red-500">*</span>
+                {t("common.password")} <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
@@ -187,7 +189,7 @@ const RegisterForm: React.FC = () => {
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className={CLASS_TOGGLE_BUTTON}
-                  aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
+                  aria-label={showPassword ? t("common.hide") : t("common.show")}
                 >
                   {showPassword ? <LuEyeOff size={20} /> : <LuEye size={20} />}
                 </button>
@@ -199,7 +201,7 @@ const RegisterForm: React.FC = () => {
 
             <div>
               <label className={CLASS_LABEL}>
-                Nhập lại mật khẩu <span className="text-red-500">*</span>
+                {t("common.confirmPassword")} <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
@@ -217,8 +219,8 @@ const RegisterForm: React.FC = () => {
                   className={CLASS_TOGGLE_BUTTON}
                   aria-label={
                     showConfirmPassword
-                      ? "Ẩn mật khẩu xác nhận"
-                      : "Hiện mật khẩu xác nhận"
+                      ? t("common.hide")
+                      : t("common.show")
                   }
                 >
                   {showConfirmPassword ? (
@@ -257,15 +259,15 @@ const RegisterForm: React.FC = () => {
             variant="outline"
             className="rounded-full"
           >
-            ĐẶT LẠI
+            {t("common.reset")}
           </RenderButton>
           <RenderButton
             type="submit"
             variant="primary-rounded"
             isLoading={loading}
-            loadingText="ĐĂNG KÝ..."
+            loadingText={t("auth.register.registerButton") + "..."}
           >
-            ĐĂNG KÝ
+            {t("auth.register.registerButton")}
           </RenderButton>
         </div>
       </form>

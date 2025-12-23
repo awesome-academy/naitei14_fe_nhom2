@@ -1,5 +1,3 @@
-import React from "react";
-// Import file api.ts nằm cùng thư mục cha
 import { categoriesApi } from "../api";
 import { Category } from "../types";
 
@@ -21,7 +19,7 @@ export default function CategoryTable({
       return;
 
     try {
-      await categoriesApi.delete(id);
+      await categoriesApi.delete(id as number);
       onRefresh();
     } catch (error) {
       console.error("Failed to delete category", error);

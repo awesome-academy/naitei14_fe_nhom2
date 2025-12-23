@@ -183,7 +183,14 @@
       "register": "Register now",
       "loginButton": "Login",
       "loginSuccess": "Login successful",
-      "loginFailed": "Login failed"
+      "loginFailed": "Login failed",
+      "orLoginWith": "OR LOGIN WITH",
+      "registerPrompt": "Register an account now to be able to shop quickly and easily! In addition, there are many policies and offers for GreenShop members."
+    },
+    "socialLogin": {
+      "google": "Continue with Google",
+      "facebook": "Continue with Facebook",
+      "github": "Continue with GitHub"
     },
     "register": {
       "title": "Register",
@@ -198,7 +205,8 @@
       "registerButton": "Register",
       "registerSuccess": "Registration successful",
       "registerFailed": "Registration failed",
-      "activationEmailSent": "Activation email has been sent to your email address."
+      "activationEmailSent": "Activation email has been sent to your email address.",
+      "accountInfo": "ACCOUNT INFORMATION"
     },
     "forgotPassword": {
       "title": "Forgot Password",
@@ -543,4 +551,3 @@
     "linkCopied": "Copied!"
   }
 }
-

@@ -171,20 +171,27 @@
     "emailEmpty": "Vui lòng nhập email",
     "emailInvalidFormat": "Email không hợp lệ"
   },
-  "auth": {
-    "login": {
-      "title": "Đăng nhập",
-      "subtitle": "Chào mừng trở lại!",
-      "email": "Email",
-      "password": "Mật khẩu",
-      "rememberMe": "Ghi nhớ đăng nhập",
-      "forgotPassword": "Quên mật khẩu?",
-      "noAccount": "Chưa có tài khoản?",
-      "register": "Đăng ký ngay",
-      "loginButton": "Đăng nhập",
-      "loginSuccess": "Đăng nhập thành công",
-      "loginFailed": "Đăng nhập thất bại"
-    },
+    "auth": {
+      "login": {
+        "title": "Đăng nhập",
+        "subtitle": "Chào mừng trở lại!",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "rememberMe": "Ghi nhớ đăng nhập",
+        "forgotPassword": "Quên mật khẩu?",
+        "noAccount": "Chưa có tài khoản?",
+        "register": "Đăng ký ngay",
+        "loginButton": "Đăng nhập",
+        "loginSuccess": "Đăng nhập thành công",
+        "loginFailed": "Đăng nhập thất bại",
+        "orLoginWith": "HOẶC ĐĂNG NHẬP BẰNG",
+        "registerPrompt": "Đăng ký tài khoản ngay để có thể mua hàng nhanh chóng và dễ dàng hơn! Ngoài ra còn có rất nhiều chính sách và ưu đãi cho các thành viên của GreenShop."
+      },
+      "socialLogin": {
+        "google": "Đăng nhập với Google",
+        "facebook": "Đăng nhập với Facebook",
+        "github": "Đăng nhập với GitHub"
+      },
     "register": {
       "title": "Đăng ký",
       "subtitle": "Tạo tài khoản mới",
@@ -198,7 +205,8 @@
       "registerButton": "Đăng ký",
       "registerSuccess": "Đăng ký thành công",
       "registerFailed": "Đăng ký thất bại",
-      "activationEmailSent": "Email kích hoạt đã được gửi đến địa chỉ email của bạn."
+      "activationEmailSent": "Email kích hoạt đã được gửi đến địa chỉ email của bạn.",
+      "accountInfo": "THÔNG TIN TÀI KHOẢN"
     },
     "forgotPassword": {
       "title": "Quên mật khẩu",
@@ -543,4 +551,3 @@
     "linkCopied": "Đã sao chép!"
   }
 }
-

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // Import API từ file cục bộ
 import { categoriesApi } from "./api";
 import { Category } from "./types";
