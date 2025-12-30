@@ -31,5 +31,6 @@ dist-ssr
 # Build outputs
 build
 .cache
-
-
+.sunlint.json
+.sunlint-cache
+sunlint-reports

@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { CheckoutForm } from "./components/CheckoutForm";
 import { OrderSummary } from "./components/OrderSummary";
 import { useCart } from "@/contexts/CartContext";
-import { createOrder } from "@/services/orderAPI";
+import { createOrder } from "@/apis/orders";
 import { ShippingInfo } from "@/types/order";
 import { RenderButton } from "@/components/ui/Button";
 import { useAuth } from "@/contexts/AuthContext";
